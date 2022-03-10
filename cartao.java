@@ -1,7 +1,7 @@
 package modelo;
 
 import java.util.Scanner;
-public class acumulaçao {
+public class acumulaÃ§ao {
 	
 	public static Scanner scan; 
 	public static void main(String[] args) {
@@ -14,13 +14,13 @@ public class acumulaçao {
 	public static double emprestimo () {
 	scan = new Scanner(System.in);
 	
-	System.out.println("Digite o valor do seu salário: ");
+	System.out.println("Digite o valor do seu salÃ¡rio: ");
 	 double r = scan.nextDouble();
-	System.out.println("Digite o valor na qual você deseja emprestar: ");
+	System.out.println("Digite o valor na qual vocÃª deseja emprestar: ");
 	 double v = scan.nextDouble();
-	System.out.println("Digite o valor que lhe sobra após pagar todas as suas contas: ");
+	System.out.println("Digite o valor que lhe sobra apÃ³s pagar todas as suas contas: ");
 	double contas = scan.nextDouble();
-	System.out.println("Digite a quantidade de parcelas que você deseja fazer: ");
+	System.out.println("Digite a quantidade de parcelas que vocÃª deseja fazer: ");
 	int qtd = scan.nextInt();
 	double valor_30desconto,  montante, taxa, juros, t;
 	
@@ -37,7 +37,7 @@ public class acumulaçao {
 	
 	
 	if (contas < valor_30desconto ) {
-		System.out.println("Desculpe, mas não é possivel realizar o emprestimo devido ao seu baixo valor de dinheiro disponivel.");
+		System.out.println("Desculpe, mas nÃ£o Ã© possivel realizar o emprestimo devido ao seu baixo valor de dinheiro disponivel.");
 		montante = 0;
 	} else {
 	
@@ -57,7 +57,7 @@ public class acumulaçao {
 				}
 		
 }
-	System.out.printf("O valor do emprestimo total, acrescentando juros é de: R$ %.2f\n", montante, "reais");
+	System.out.printf("O valor do emprestimo total, acrescentando juros Ã© de: R$ %.2f\n", montante, "reais");
  
 	System.out.printf("Cada parcela custando aproximamente:R$ %.2f\n" , parcelas , "reais");
 
@@ -65,4 +65,3 @@ public class acumulaçao {
 	
 	}
 }
-
