@@ -1,0 +1,19 @@
+FULLSTAP = Desktop, back, front, mobile, iot.
+
+banco de dados = registros = linhas de uma tabela.
+
+Campos de uma coluna:
+	-Registros;
+	-tuplas;
+	-objetos;
+	-linhas;
+
+linhas de uma coluna:
+	-dado;
+	-ceélulas;
+
+informacao = saida, tem uma acao
+
+campo para escrever: campo field, rotul, label.
+
+a telinha: Tela, form, frame, Página.

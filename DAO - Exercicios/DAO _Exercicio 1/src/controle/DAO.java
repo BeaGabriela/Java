@@ -12,8 +12,8 @@ import modelo.Principal;
 public class DAO {
 		private BufferedReader br;
 		private BufferedWriter bw;
-		private String entrada = "C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\DAO _Exercicio 1\\dados\\pessoas.csv";
-		private String saida = "C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\DAO _Exercicio 1\\dados\\saida.csv";
+		private String entrada = "C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\DAO - Exercicios\\DAO _Exercicio 1\\dados\\pessoas.csv";
+		private String saida = "C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\DAO - Exercicios\\DAO _Exercicio 1\\dados\\saida.csv";
 		
 		public ArrayList<Principal> abrir(){
 			ArrayList<Principal> linhas = new ArrayList<>();

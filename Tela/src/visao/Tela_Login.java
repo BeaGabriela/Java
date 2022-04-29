@@ -1,18 +1,12 @@
 package visao;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controle.UsuarioProcessa;
-
-public class Tela_Login extends JFrame implements ActionListener{
+public class Tela_Login extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	//Atributos
@@ -45,7 +39,6 @@ public class Tela_Login extends JFrame implements ActionListener{
 		
 		login = new JButton("Login");
 		login.setBounds(120,100,200,30);
-		login.addActionListener(this);
 		
 		painel.add(rotulo1);
 		painel.add(rotulo2);
@@ -54,28 +47,11 @@ public class Tela_Login extends JFrame implements ActionListener{
 		painel.add(login);
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == login) {
-			int indice = UsuarioProcessa.checarEmail(Email.getText());
-			if (indice != -1) {
-				if (UsuarioProcessa.checarSenha(indice, Senha.getText())) {
-					JOptionPane.showMessageDialog(this, "Acesso permitido");
-					this.dispose();// Fecha o Formulário
-				} else {
-					JOptionPane.showMessageDialog(this, "Acesso negado");
-				}
-			} else {
-				JOptionPane.showMessageDialog(this, "Usuário não encontrado");
-			}
-		}
-	}
-
 	public static void main(String[] args) {
-		UsuarioProcessa.carregar();
 		Tela_Login tela = new Tela_Login();
 		tela.setVisible(true);
-	}
-}
-
 		
-	
+
+	}
+
+}
