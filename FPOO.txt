@@ -17,3 +17,14 @@ informacao = saida, tem uma acao
 campo para escrever: campo field, rotul, label.
 
 a telinha: Tela, form, frame, Página.
+
+CRUD - create(criar), read(ler, listar), uptade(altererar), delete(apagar);
+
+jtextarea - campo de texto, para adicionar mais texto;
+
+jtextfield- texto;
+
+jcombox - caixinha
+
+
+é possivel fazer um arótulo para todos os argumentos em Java. Basta utilizar o rotulo e setar eles para todos.
