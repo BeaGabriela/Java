@@ -5,6 +5,8 @@ import java.awt.Container;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Area;
+import java.text.ParseException;
 
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
@@ -18,19 +20,29 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import controle.PetProcessa;
+
 public class PetForm extends JFrame implements ActionListener {
-	
+
 	private static final long serialVersionUID = 1L;
 	// Atributos
 	private JPanel painel;
-	private JLabel r1, r2, r3, r4, r5, r6, r7, r8, imagemdoPet;
+	private JLabel r1, r2, r3, r4, r5, r6, r7, r8, imagemdoPet, rotulos;
 	private JTextField id, raca, nome, peso, nascimento, dono, telefone, quadro1;
 	private JButton cadastrar, buscar, alterar, excluir;
 	private JComboBox especie;
-	private JTextArea resultados ;
-	String imagepath = "C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\PETS\\img\\h.jpg";
-	private ImageIcon icon = new ImageIcon(new ImageIcon(imagepath).getImage().getScaledInstance(240, 130, 100)); 
-	private int autoId=1;
+	private JTextArea resultados;
+	private String[] ImgPath = { "C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\PETS\\img\\h.jpg",
+			"C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\PETS\\img\\gatos.jpg",
+			"C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\PETS\\img\\cao.jpg",
+			"C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\PETS\\img\\coelho.jpg",
+			"C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\PETS\\img\\calopsita.jpg",
+			"C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\PETS\\img\\adicionar.jpg" };
+
+	private int autoId = PetProcessa.pets.size()+1;
+	private ImageIcon icon;
+	private String texto = "";
+
 	PetForm() {
 		// Propriedades Basicas;
 		setTitle("Formulário de PETS");
@@ -39,20 +51,22 @@ public class PetForm extends JFrame implements ActionListener {
 		painel = new JPanel();
 		setContentPane(painel);
 		setLayout(null);
-		painel.setBackground(new Color(204,255,229));
+		painel.setBackground(new Color(204, 255, 229));
 
 		// Conteudo da tela
 		r1 = new JLabel("Id: ");
 		r1.setBounds(40, 20, 100, 20);
 
-		id = new JTextField(""+autoId);
+		id = new JTextField("" + autoId);
 		id.setEnabled(false);
 		id.setBounds(120, 20, 250, 20);
 
 		r2 = new JLabel("Especie: ");
 		r2.setBounds(40, 60, 100, 20);
 
-		especie = new JComboBox<Object>(new String [] {"Gato" , "Cachorro", "Coelho", "Passáro", "Hamster", "Outros..."});
+		especie = new JComboBox<Object>(
+				new String[] { "Hamster", "Gato", "Cachorro", "Coelho", "Passáro", "Outros..." });
+		especie.addActionListener(this);
 		especie.setBounds(120, 60, 250, 20);
 
 		r3 = new JLabel("Raça: ");
@@ -93,7 +107,9 @@ public class PetForm extends JFrame implements ActionListener {
 
 		resultados = new JTextArea();
 		resultados.setBounds(40, 450, 700, 200);
-		resultados.enable(false);
+		resultados.setEnabled(false);
+		preencherAreaDeTexto();
+		
 
 		quadro1 = new JTextField();
 		quadro1.setBounds(120, 180, 250, 20);
@@ -119,13 +135,16 @@ public class PetForm extends JFrame implements ActionListener {
 		imagemdoPet = new JLabel();
 		imagemdoPet.setBounds(500, 230, 200, 200);
 		imagemdoPet.setIcon(icon);
-		
-	
+		alterarImage(0);
+
 		resultados.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
 		imagemdoPet.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-		
-		
-		
+
+		rotulos = new JLabel(
+				"Id:            Espécie:                 Pet:                 Peso:       Idade:       Dono:          Telefone:");
+		rotulos.setBounds(130, 425, 500, 30);
+		painel.add(rotulos);
+
 		painel.add(r1);
 		painel.add(id);
 		painel.add(r2);
@@ -150,36 +169,81 @@ public class PetForm extends JFrame implements ActionListener {
 		painel.add(excluir);
 		painel.add(imagemdoPet);
 
+		especie.addActionListener(this);
+		cadastrar.addActionListener(this);
+		buscar.addActionListener(this);
+		alterar.addActionListener(this);
+		excluir.addActionListener(this);
+
+	}
 	
+	private void limparCampos() {
+		nome.setText(null);
+		raca.setText(null);
+		peso.setText(null);
+		nascimento.setText(null);
+		dono.setText(null);
+		telefone.setText(null);
+	}
+	
+	private void preencherAreaDeTexto() {
+		texto="";
+		for (Pet p : PetProcessa.pets) {
+			texto += p.toString();
+		}
+		resultados.setText(texto);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if (e.getSource() == especie) {
+			alterarImage(especie.getSelectedIndex());
+		}
+
+		if (e.getSource() == cadastrar) {
+			try {
+				cadastrar();
+			} catch (ParseException e1) {
+				System.out.println(e1);
+			}
+		}
+
+		if (e.getSource() == buscar) {
+
+		}
+		if (e.getSource() == alterar) {
+
+		}
+		if (e.getSource() == excluir) {
+
+		}
 
 	}
 
-//		public void actionPerformed(ActionEvent e) {
-//			if (e.getSource() == login) {
-//				int indice = UsuarioProcessa.checarEmail(Email.getText());
-//				if (indice != -1) {
-//					if (UsuarioProcessa.checarSenha(indice, Senha.getText())) {
-//						JOptionPane.showMessageDialog(this, "Acesso permitido");
-//						this.dispose();// Fecha o Formulário
-//					} else {
-//						JOptionPane.showMessageDialog(this, "Acesso negado");
-//					}
-//				} else {
-//					JOptionPane.showMessageDialog(this, "Usuário não encontrado");
-//				}
-//			}
-//		}
-//
-	public static void main(String[] args) {
-//			UsuarioProcessa.carregar();
+	// Create do CRUD
+	private void cadastrar() throws ParseException {
+		if (nome.getText().length() != 0 && raca.getText().length() != 0 && peso.getText().length() != 0
+				&& nascimento.getText().length() != 0 && dono.getText().length() != 0
+				&& telefone.getText().length() != 0) {
+
+			PetProcessa.pets.add(new Pet(autoId, especie.getSelectedItem().toString(), nome.getText(), raca.getText(), Float.parseFloat(peso.getText()), nascimento.getText(), dono.getText(), telefone.getText()));
+			autoId++;
+			preencherAreaDeTexto();
+			limparCampos();
+		} else {
+			JOptionPane.showMessageDialog(this, "Por favor, preecha todos os campos.");
+		}
+	}
+
+	public void alterarImage(int indice) {
+		icon = new ImageIcon(new ImageIcon(ImgPath[indice]).getImage().getScaledInstance(260, 200, 100));
+		imagemdoPet.setIcon(icon);
+	}
+
+	public static void main(String[] args) throws ParseException {
+		PetProcessa.carregarTestes();
 		PetForm tela = new PetForm();
 		tela.setVisible(true);
-		
-		
+
 	}
 }

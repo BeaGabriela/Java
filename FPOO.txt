@@ -18,6 +18,7 @@ campo para escrever: campo field, rotul, label.
 
 a telinha: Tela, form, frame, Página.
 
+GUI - graphes, user, Interface.
 CRUD - create(criar), read(ler, listar), uptade(altererar), delete(apagar);
 
 jtextarea - campo de texto, para adicionar mais texto;
@@ -27,4 +28,18 @@ jtextfield- texto;
 jcombox - caixinha
 
 
-é possivel fazer um arótulo para todos os argumentos em Java. Basta utilizar o rotulo e setar eles para todos.
+é possivel fazer um arótulo para todos os argumentos em Java. Basta utilizar o rotulo e setar eles para todo
+
+Softskills:
+Progrador especialistas(peao)(redes, servidores, segurança de informações...): Mobile, frontrnd, DDA(banco de dados), ciencia de dados, backend.
+Generalistas(bispo, cavalos, torre): fullstake, analista de sistemas, gerente de projetos. (mais próximos com os clientes)
+como se comportar, como tratar seu cliente;
+
+Hardskills: 
+Parte técnica.
+Resolver o problema.
+
+
+base64 - Transforma imagem em texto;
+
+requisito - dev - teste - omologação.

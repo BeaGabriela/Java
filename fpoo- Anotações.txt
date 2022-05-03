@@ -1,0 +1,52 @@
+Data acess object - DAO
+FPOO - Programação orientada a objeto;
+Escabilidade - Expande tranquilamente.
+
+Projeto estruturado - Resolve o problema mas não é escalavél, ou seja, não se pode expandir.
+
+"\\" -- Dentro de uma String as barras duplas significam que não é um comando, e sim, faz apenas parte da String;
+
+"\" - Uma instrução;
+"\""
+
+banco de dado  semi-estruturado - csv, txt;
+|
+|
+ -> estruturado - Oracle;
+
+Programação 
+- estrutural: 
+-POO: Programacao orientada a objeto
+-MVC - modelo, visao, controle
+- DAO - Dados, acess, object
+- CRUD: CREATE, READ, UPDATE, DELETE
+
+escabilidade: Aplicar alterações em um código, aumentando suas funcionalidades sem a necessidade de alterar todas as partes.
+Programação em blocos;
+
+	//Programação estrutural:
+	Oriebtada a funções: 
+"Proedimentos	
+"Eventos" : Algo que acontece no computador, um clique;
+"Visual" : Objtos prontos e soltra na tela;
+
+GUI(Gaphies user Interface)
+MVC(Model, view, control) padrao de objetos.;
+DAO(DATA ACESS object) Persistencia;
+
+
+
+	
+thwors- não da mensagem de erro, apenas ignora;
+try-catch = da mensagem de erro; 
+
+
+tratamento de erro - evitar que o prgrama trave. Trata o programa. (Try-catch);
+
+arvore binaria - caminhos possiveis que um fluxograma poe seguir;
+
+em string usa-se .equals();
+
+extends - Herda
+
+interface - classse que não tem atributo, apenas metodos.
