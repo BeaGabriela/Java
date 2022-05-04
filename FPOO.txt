@@ -43,3 +43,16 @@ Resolver o problema.
 base64 - Transforma imagem em texto;
 
 requisito - dev - teste - omologação.
+
+
+Caminho relativo- "./img/imagem.png"
+Caminho Absoluto-"C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\PETS\\img\\gatos.jpg"
+
+hashcode = Garante que ele seja unico.
+equals = Garante que ele encontre.
+
+id não é igual ao indice, id é chave, indie não. id é para usuario, indice é para o programa.
+
+quase nunca esta escrio visao, geralmente;;;
+
+	
