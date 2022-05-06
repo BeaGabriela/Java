@@ -64,7 +64,7 @@ flechas pontilhada para tras(<---)(extends)- Opcional;
 
 3 -- Diagrma de classes. 
 	diagrama de produção, mas  proximo da real, de como vai ficar o programa.
-nivel 1- classses;
+nivel 1- classes;
 nivel 2- privado ou publico, static.
 
 simples - uma linha simples;
@@ -92,6 +92,16 @@ RF - requisito funcional.
 
 draw.io - Desenhar;
 
+Regras em banco de daods- não se deve armazenar resultados baseados em contas.
+
+um para muitos;
+
+tupla - uma coleção de objetos ordenados. - Separra dem duas tabelas; A primeira tabela é sempre menos, e a segunda é maor, usano informações da primeira tabela.
+
+
+um para um;
+um para N;
+n para um;
 
 
 
