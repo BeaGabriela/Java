@@ -50,3 +50,51 @@ em string usa-se .equals();
 extends - Herda
 
 interface - classse que não tem atributo, apenas metodos.
+
+UML - Linguagem de modelagem unificada(Unifield modeling language);
+
+1--Diagram de caso de uso - representa o usuario com bonecos, e as elipse para representar umma ação, uma fncionalidade(features)(tem de haver um verbo, no infinitivo);
+
+cilindro represneta um banco de dados;
+
+flechas pontilhada para frente (--->)(include) - obrigatorio;
+flechas pontilhada para tras(<---)(extends)- Opcional;
+
+2--Prototipo: Interface com o usuario, um esboço; Desenhar a tela para ter uma leve noção de como vai ficar;
+
+3 -- Diagrma de classes. 
+	diagrama de produção, mas  proximo da real, de como vai ficar o programa.
+nivel 1- classses;
+nivel 2- privado ou publico, static.
+
+simples - uma linha simples;
+flecha com ---|> - Interface.
+flecha com -|> - herança.
+flecha com > - Associação
+flecha com losango vazio - ela não depdende de outra classe;
+flecha com lozango prenchido - Ele depdnde de outra classe;
+
+direção da flecha diz de quem ela "precisa".
+
+1..* - cardinalidade;
+2..*
+
+A documentação é feita antes, durante e depois.
+
+redents - opciocal;
+include - obrigatorio.
+
+essencial - não funciona sme ele.
+importante - é necesario.
+desejavel - não tao importante.
+
+RF - requisito funcional.
+
+draw.io - Desenhar;
+
+
+
+
+
+
+
