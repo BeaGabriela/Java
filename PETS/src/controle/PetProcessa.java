@@ -3,12 +3,31 @@ package controle;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+<<<<<<< HEAD
 import visao.Pet;
 
 public class PetProcessa {
 	public static ArrayList<Pet> pets = new ArrayList<>();
 	
 	public static void carregarTestes() throws ParseException {
+=======
+import modelo.Pet;
+
+public class PetProcessa {
+	public static ArrayList<Pet> pets = new ArrayList<>();
+	private static Pet_DAO pd = new Pet_DAO();
+	
+	public static void abrir() {
+		pets.pd.ler();
+	}
+	
+	public static void salvar() {
+		pets.pd.ler();
+	}
+	
+	
+		public static void carregarTestes() throws ParseException {
+>>>>>>> 370ad510e309e95a617dcbcc5ed2fabe2a8fc938
 		//Limpar a lista
 		pets = new ArrayList<>();
 		//Preencher com testes
@@ -19,4 +38,11 @@ public class PetProcessa {
 		pets.add(new Pet (5, "Passáro", "Peninha", "Calopsita", 0.2f, "08/09/2004", "Carlos", "(19) 8090-6003"));
 		
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	
+	
+>>>>>>> 370ad510e309e95a617dcbcc5ed2fabe2a8fc938
 }
