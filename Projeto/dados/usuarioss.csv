@@ -1,9 +1,8 @@
-Maria@gmail.com;qwer
-Carlos@gmail.com;1234
-Marcelo@gmail.com;abcd
-Julia@gmail.com;efgh
-Ana@gmail.com;7789
-Beatriz@gmail.com;9642
-Victor@gmail.com;podf
-admin@admin.com;admin
-
+admin@admin.com;admin;null
+Maria;Maria@gmail.com;qwer;./assents/maria.png
+Carlos@gmail.com;1234;C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\Projeto\\assents\\Carlos.png
+Marcelo@gmail.com;abcd;C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\Projeto\\assents\\marcelo.jpg
+Julia@gmail.com;efgh;C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\Projeto\\assents\\julia.png
+Ana@gmail.com;7789;C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\Projeto\\assents\\ana.jpg
+Beatriz@gmail.com;9642;C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\Projeto\\assents\\beatriz.jpg
+Victor@gmail.com;podf;C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\Projeto\\assents\\Victor.png

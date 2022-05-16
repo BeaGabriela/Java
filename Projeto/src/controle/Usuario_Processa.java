@@ -7,7 +7,6 @@ import uteis.Cripto;
 
 
 public class Usuario_Processa {
-	public static ArrayList<Venda> vendas = new ArrayList<>();
 	public static ArrayList<Usuario> usuarios = new ArrayList<>();
 	private static Usuario_DAO ud = new Usuario_DAO();
 
@@ -38,12 +37,5 @@ public class Usuario_Processa {
 		}
 		return false;
 	}
-public static void carregarTeste() {
-		
-		//Limpa a lista
-		vendas = new ArrayList<>();
-		//Preenche a lista
-		vendas.add(new Venda("felipe", "19/12/2003 10:50:30", "felipe", "blusa", "masculino"));
-		
-	}
+
 }

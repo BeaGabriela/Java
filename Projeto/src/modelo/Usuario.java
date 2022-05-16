@@ -5,8 +5,18 @@ import java.util.Objects;
 public class Usuario {
 
 	// Atributos
+	private String nome;
 	private String email;
 	private String senha;
+	private String img;
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
 
 	// Construtores
 	public Usuario(String email, String senha) {
@@ -17,8 +27,8 @@ public class Usuario {
 	public Usuario(String linha) {
 		this.email = linha.split(";")[0];
 		this.senha = linha.split(";")[1];
+		this.img = linha.split(";")[2];
 	}
-
 	// M�todos de acesso (Getters && Setters)
 	public String getEmail() {
 		return email;
@@ -60,6 +70,6 @@ public class Usuario {
 	}
 
 	public String toCSV() {
-		return email + ";" + senha + "\r\n";
+		return email + ";" + senha + img + "\r\n";
 	}
 }

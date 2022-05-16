@@ -25,7 +25,6 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import controle.Usuario_Processa;
-import controle.Venda;
 import modelo.Usuario;
 import uteis.Cripto;
 
@@ -34,19 +33,13 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel painel;
 	private JLabel nomeCliente, genClient, tipoProuduto, valProduto, descont, qtd, nomeVendedor, imagemVendedor, lbEmail, lbSenha;
-	private JTextField tfCliente, tfvalProduto, tfQtd;
-	private JComboBox<String> produtos, genCliente, desconto, tfVendedor;
+	private JTextField tfCliente, tfvalProduto, tfQtd, tfVendedor;
+	private JComboBox<String> produtos, genCliente, desconto;
 	private JTextArea totalcompra;
 	private JButton cadastrar, buscarProduto, apagar, mudarVendedor;
 	private String imgIco = "D:\\fpoo\\work3\\modelo\\src\\modelo\\Roupas\\assets\\flor.png";
-	private String[] imagens = { "./assets/ana.jpg",
-			"./assets/beatriz.jpg",
-			"./assets/Carlos.png",
-			"./assets/julia.png",
-			"./assets/marcelo.jpg",
-			"./assets/maria.png",
-			"./assets/Victor.png" };
 	private ImageIcon icon;
+	private String[] usuarioss = {"Maria@gmail.com", "Carlos@gmail.com", "Marcelo@gmail.com", "Julia@gmail.com", "Ana@gmail.com", "Beatriz@gmail.com", "Victor@gmail.com", "admin@admin.com"};
 	private String texto = "";
 	private JTextField tfEmail;
 	private JPasswordField pfSenha;
@@ -58,7 +51,7 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 	Usuario_Crud() {
 		
 		setTitle("Gerenciamento de Vendedores");
-		setBounds(500, 200, 470, 400);
+		setBounds(500, 200, 880, 650);
 		setIconImage(new ImageIcon(imgIco).getImage());
 		painel = new JPanel();
 		painel.setBackground(new Color(199, 199, 199));
@@ -84,53 +77,47 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 		painel.add(pfSenha);
 
 		nomeCliente = new JLabel("*Nome do Cliente:");
-		nomeCliente.setBounds(20, 90, 120, 30);
+		nomeCliente.setBounds(20, 130, 120, 30);
 		tfCliente = new JTextField();
-		tfCliente.setBounds(140, 95, 255, 30);
-		//
+		tfCliente.setBounds(140, 130, 120, 30);
+			//
 		genClient = new JLabel("*Gênero Roupa:");
-		genClient.setBounds(20, 125, 120, 30);
+		genClient.setBounds(20, 165, 120, 30);
 		genCliente = new JComboBox<String>(new String[] { "Feminina", "Masculina" });
-		genCliente.setBounds(140, 130, 255, 30);
+		genCliente.setBounds(140, 165, 255, 30);
 		//
 		tipoProuduto = new JLabel("*Produto:");
-		tipoProuduto.setBounds(20, 165, 120, 30);
+		tipoProuduto.setBounds(20, 200, 120, 30);
 		produtos = new JComboBox<String>(new String[] { "Calça Jeans", "Blusa moletom", "Vestido", "Calça Moletom",
 				"Camiseta", "Blusa", "Tênis", "Salto" });
-		produtos.setBounds(140, 165, 255, 30);
+		produtos.setBounds(140, 200, 255, 30);
 		//
 		valProduto = new JLabel("*Valor do Produto:");
-		valProduto.setBounds(20, 240, 120, 30);
+		valProduto.setBounds(20, 235, 120, 30);
 		tfvalProduto = new JTextField();
-		tfvalProduto.setBounds(140, 240, 255, 30);
+		tfvalProduto.setBounds(140, 235, 255, 30);
 		//
 		descont = new JLabel("*Desconto:");
-		descont.setBounds(20, 200, 120, 30);
+		descont.setBounds(20, 270, 120, 30);
 		desconto = new JComboBox<String>(new String[] { "5%", "10%", "15%", "20%", "25%", "30%", "40%", "Não" });
-		desconto.setBounds(140, 200, 255, 30);
+		desconto.setBounds(140, 270, 255, 30);
 		//
 		qtd = new JLabel("*Quantidade:");
-		qtd.setBounds(20, 280, 120, 30);
+		qtd.setBounds(20, 305, 120, 30);
 		tfQtd = new JTextField();
-		tfQtd.setBounds(140, 280, 255, 30);
-		//
-
-		totalcompra = new JTextArea();
-		totalcompra.setBounds(10, 350, 760, 200);
-		totalcompra.setEnabled(false);
-		totalcompra.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
-		//
+		tfQtd.setBounds(140, 305, 255, 30);
+		//	
 		nomeVendedor = new JLabel("*Nome vendedor:");
-		nomeVendedor.setBounds(450, 280, 120, 30);
-		tfVendedor = new JComboBox<String>(
-				new String[] { "Ana", "Beatriz", "Carlos", "Julia", "Marcelo", "Maria", "Victor" });
-		tfVendedor.setBounds(453, 310, 255, 30);
+		nomeVendedor.setBounds(580, 240, 120, 30);
+		tfVendedor = new JTextField();
+		tfVendedor.setBounds(580, 270, 255, 30);
+		tfVendedor.setEditable(false);
 		//
 		imagemVendedor = new JLabel();
-		imagemVendedor.setBounds(465, 75, 230, 200);
+		imagemVendedor.setBounds(575, 35, 230, 200);
 		imagemVendedor.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
 
-		alternarImagens(0);
+//		alternarImagens(0);
 		//
 		//
 		cadastrar = new JButton("Cadastrar");
@@ -171,7 +158,7 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 		painel.add(descont);
 		painel.add(desconto);
 		//
-		painel.add(totalcompra);
+		//painel.add(totalcompra);
 		//
 		painel.add(nomeVendedor);
 		painel.add(tfVendedor);
@@ -181,11 +168,13 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 		painel.add(cadastrar);
 		painel.add(buscarProduto);
 		//
-		painel.add(apagar);
+	painel.add(apagar);
 		painel.add(mudarVendedor);
 
 	
 	tableModel = new DefaultTableModel();
+	tableModel.addColumn("Email Vendedor");
+	tableModel.addColumn("Senha");
 	tableModel.addColumn("Produto");
 	tableModel.addColumn("Quantidade");
 	tableModel.addColumn("Genêro");
@@ -198,15 +187,16 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 	table = new JTable(tableModel);
 	table.setEnabled(false);
 	scroll = new JScrollPane(table);
-	scroll.setBounds(20, 125, 415, 215);
+	scroll.setBounds(50, 360, 760, 200);
 	painel.add(scroll);
 
 }
 
 	private void alternarImagens(int indice) {
-		icon = new ImageIcon(new ImageIcon(imagens[indice]).getImage().getScaledInstance(230, 200, 100));
+		Usuario vendedor = new Usuario();
+		icon = new ImageIcon(new ImageIcon(img[indice]).getImage().getScaledInstance(230, 200, 100));
 		imagemVendedor.setIcon(icon);
-	}
+}
 
 	int obterIndiceEspecie(String Vendedor) {
 		switch (Vendedor) {
