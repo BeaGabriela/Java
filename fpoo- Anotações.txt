@@ -26,9 +26,9 @@ Programação em blocos;
 
 	//Programação estrutural:
 	Oriebtada a funções: 
-"Proedimentos	
+"Procedimentos	
 "Eventos" : Algo que acontece no computador, um clique;
-"Visual" : Objtos prontos e soltra na tela;
+"Visual" : Objetos prontos e soltar na tela;
 
 GUI(Gaphies user Interface)
 MVC(Model, view, control) padrao de objetos.;

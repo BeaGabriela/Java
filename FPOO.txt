@@ -10,9 +10,9 @@ Campos de uma coluna:
 
 linhas de uma coluna:
 	-dado;
-	-ceélulas;
+	-células;
 
-informacao = saida, tem uma acao
+informacao = saida, tem uma acão.
 
 campo para escrever: campo field, rotul, label.
 
@@ -28,7 +28,7 @@ jtextfield- texto;
 jcombox - caixinha
 
 
-é possivel fazer um arótulo para todos os argumentos em Java. Basta utilizar o rotulo e setar eles para todo
+é possivel fazer um rótulo para todos os argumentos em Java. Basta utilizar o rotulo e setar eles para todo
 
 Softskills:
 Progrador especialistas(peao)(redes, servidores, segurança de informações...): Mobile, frontrnd, DDA(banco de dados), ciencia de dados, backend.
@@ -53,6 +53,6 @@ equals = Garante que ele encontre.
 
 id não é igual ao indice, id é chave, indie não. id é para usuario, indice é para o programa.
 
-quase nunca esta escrio visao, geralmente;;;
+quase nunca esta escrio visao, geralmente view.
 
 	
