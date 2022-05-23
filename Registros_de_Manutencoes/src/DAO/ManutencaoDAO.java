@@ -14,7 +14,7 @@ public class ManutencaoDAO {
 	
 	private BufferedReader br;
 	private BufferedWriter bw;
-	private String path = "./manutencao/manutencao.csv";
+	private String path = "C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\Registros_de_Manutencoes\\manutencoes\\manutencao.csv";
 	
 	
 	public ArrayList<Manutencao> ler(){
@@ -23,7 +23,7 @@ public class ManutencaoDAO {
 		try {
 			br = new BufferedReader(new FileReader(path));
 			String manute = br.readLine();
-			while(manu != null) {
+			while(manute != null) {
 				manutencao = new Manutencao(manute);
 				manu.add(manutencao);
 				manute = br.readLine();

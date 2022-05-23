@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Usuario {
 
-	// Atributos
+	// Atributos]
 	private String nome;
 	private String email;
 	private String senha;

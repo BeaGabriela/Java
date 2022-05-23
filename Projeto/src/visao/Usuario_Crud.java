@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -38,7 +39,7 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 	private JTextArea totalcompra;
 	private JButton cadastrar, buscarProduto, apagar, mudarVendedor;
 	private String imgIco = "D:\\fpoo\\work3\\modelo\\src\\modelo\\Roupas\\assets\\flor.png";
-	private ImageIcon icon = "C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\Projeto\\assents" ;
+	private String icon = "./assents/Victor.png" ;
 	private String[] usuarioss = {"Maria@gmail.com", "Carlos@gmail.com", "Marcelo@gmail.com", "Julia@gmail.com", "Ana@gmail.com", "Beatriz@gmail.com", "Victor@gmail.com", "admin@admin.com"};
 	private String texto = "";
 	private JTextField tfEmail;
@@ -193,7 +194,7 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 }
 
 	private void alternarImagens(int indice) {
-		icon = new ImageIcon(new ImageIcon([indice]).getImage().getScaledInstance(230, 200, 100));
+		icon = new String(new String().getImage().getScaledInstance(230, 200, 100));
 		imagemVendedor.setIcon(icon);
 }
 
