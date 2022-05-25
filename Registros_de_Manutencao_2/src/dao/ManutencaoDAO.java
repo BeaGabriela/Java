@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import modelo.Manutencao;
 
 public class ManutencaoDAO {
-	private Manutencao manutencao;
-	private ArrayList<Manutencao>manutencoes = new ArrayList<>(); 
 	private BufferedReader br;
 	private BufferedWriter bw;
 	private String arquivo = "C:\\Users\\Family\\Desktop\\Programas-em-Java\\Registros_de_Manutencao_2\\assents\\manutencoes.csv";
@@ -40,10 +38,10 @@ public class ManutencaoDAO {
 
 
 	
-	public void escrever(ArrayList<Manutencao> ma) {
+	public void escrever(ArrayList<Manutencao> linhas) {
 		try {
 			bw= new BufferedWriter(new FileWriter(arquivo));
-			for(Manutencao man : ma) {
+			for(Manutencao man : linhas) {
 				bw.write(man.toCSV());
 			}
 			bw.close();

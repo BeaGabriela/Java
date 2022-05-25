@@ -25,8 +25,8 @@ import modelo.Manutencao;
 public class FormManutencoes extends JDialog implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
-	private JLabel Lid, Ldata, Lequipamento, Lcusto, Ltempo;
-	private JTextField id, data, equipamento, custo, tempo, listando;
+	private JLabel Lid, Ldata, Lequipamento, Lcusto, Ltempo, listando;
+	private JTextField id, data, equipamento, custo, tempo;
 	private JButton cadastrar, alterar, excluir, buscar;
 	private JTable table;
 	private DefaultTableModel tableModel;
@@ -86,12 +86,16 @@ public class FormManutencoes extends JDialog implements ActionListener {
 		tempo.setBounds(135, 165, 100, 30);
 		panel.add(tempo);
 
-		listar = new JTextArea("Id  Data  Equipamento  Custo Tempo");
+		listar = new JTextArea();
 		listar.setBounds(20, 250, 420, 100);
 		panel.add(listar);
 		listar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
 		preencherTabela();
-
+		
+		listando = new JLabel("Id  Data  Equipamento  Custo Tempo");
+		listando.setBounds(20, 230, 400, 100);
+		panel.add(listando);
+		
 		cadastrar = new JButton("Cadastrar");
 		buscar = new JButton("Consultar");
 		alterar = new JButton("Alterar");
@@ -125,8 +129,6 @@ public class FormManutencoes extends JDialog implements ActionListener {
 			return 1;
 		case "carburador":
 			return 2;
-		case "a":
-		return 3;
 		default:
 			return -1;
 		}
@@ -158,16 +160,17 @@ public class FormManutencoes extends JDialog implements ActionListener {
 			autoId++;
 			preencherTabela();
 			limparCampos();
+			ProcessaManutencoes.salvar();
 		} else {
 			JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos");
 		}
-		ProcessaManutencoes.salvar();
+		
 	}
 
 	private void buscar() {
 		String entrada = JOptionPane.showInputDialog(this, "Digite o Id da manutenção:");
 		boolean isNumeric = true;
-		if (entrada != null && !entrada.equals("")) {
+		if (entrada != null) {
 			for (int i = 0; i < entrada.length(); i++) {
 				if (!Character.isDigit(entrada.charAt(i))) {
 					isNumeric = false;
