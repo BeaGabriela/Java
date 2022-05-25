@@ -89,7 +89,7 @@ public class Manutencao {
 		return custoHora;
 	}
 	public String getCustoHora(String s) {
-		return String.format(".2f", custoHora);
+		return String.format("%.2f", custoHora);
 	}
 
 	public void setCustoHora(double custoHora) {
@@ -101,7 +101,7 @@ public class Manutencao {
 	}
 	
 	public String getTempoGasto(String s) {
-		return String.format(".2f", tempoGasto);
+		return String.format("%.2f", tempoGasto);
 	}
 
 	public void setTempoGasto(double tempoGasto) {
@@ -129,8 +129,8 @@ public class Manutencao {
 
 	@Override
 	public String toString() {
-		return  id + "\t" + data + "\t" + equipamento + "\t" + String.format("%.2f",custoHora)
-				+ "\t" + String.format("%.2f",tempoGasto) + getTotal();
+		return  id + " " + sdf.format(data) + " " + equipamento + " " + String.format("%.2f",custoHora)
+				+ " " + String.format("%.2f",tempoGasto) + " " + getTotal() + "\n";
 	}
 	
 	

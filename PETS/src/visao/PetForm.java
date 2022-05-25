@@ -31,7 +31,7 @@ import controle.PetProcessa;
 <<<<<<< HEAD
 =======
 import modelo.Pet;
->>>>>>> 370ad510e309e95a617dcbcc5ed2fabe2a8fc938
+
 
 public class PetForm extends JFrame implements ActionListener {
 
@@ -41,11 +41,11 @@ public class PetForm extends JFrame implements ActionListener {
 	private JLabel r1, r2, r3, r4, r5, r6, r7, r8, imagemdoPet, rotulos;
 	private JTextField id, raca, nome, peso, nascimento, dono, telefone, quadro1;
 	private JButton cadastrar, buscar, alterar, excluir;
-<<<<<<< HEAD
+
 	private JComboBox especie;
-=======
+
 	private JComboBox<String> especie;
->>>>>>> 370ad510e309e95a617dcbcc5ed2fabe2a8fc938
+
 	private JTextArea resultados;
 	private String[] ImgPath = { "C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\PETS\\img\\h.jpg",
 			"C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\PETS\\img\\gatos.jpg",
@@ -54,7 +54,7 @@ public class PetForm extends JFrame implements ActionListener {
 			"C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\PETS\\img\\calopsita.jpg",
 			"C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\PETS\\img\\adicionar.jpg" };
 
-<<<<<<< HEAD
+
 	private int autoId = PetProcessa.pets.size()+1;
 	private ImageIcon icon;
 	private String texto = "";

@@ -1,5 +1,6 @@
 package visao;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
@@ -7,6 +8,7 @@ import java.text.ParseException;
 import java.util.Currency;
 import java.util.Locale;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -41,6 +43,7 @@ public class FormManutencoes extends JDialog implements ActionListener {
 		panel = new JPanel();
 		setContentPane(panel);
 		setLayout(null);
+		panel.setBackground(new Color(204, 255, 229));
 
 		Lid = new JLabel("Id:");
 		Lid.setBounds(20, 20, 100, 30);
@@ -83,18 +86,16 @@ public class FormManutencoes extends JDialog implements ActionListener {
 		tempo.setBounds(135, 165, 100, 30);
 		panel.add(tempo);
 
-		listar = new JTextArea("");
-		listar.setBounds(20, 300, 420, 80);
+		listar = new JTextArea("Id  Data  Equipamento  Custo Tempo");
+		listar.setBounds(20, 250, 420, 100);
 		panel.add(listar);
+		listar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
 		preencherTabela();
-		
 
 		cadastrar = new JButton("Cadastrar");
 		buscar = new JButton("Consultar");
 		alterar = new JButton("Alterar");
 		excluir = new JButton("Excluir");
-		
-		
 
 		cadastrar.setBounds(335, 50, 100, 30);
 		buscar.setBounds(335, 90, 100, 30);
@@ -114,7 +115,6 @@ public class FormManutencoes extends JDialog implements ActionListener {
 		alterar.setEnabled(false);
 		excluir.setEnabled(false);
 
-		
 	}
 
 	int obterIndiceManutencoes(String manutencao) {
@@ -125,19 +125,21 @@ public class FormManutencoes extends JDialog implements ActionListener {
 			return 1;
 		case "carburador":
 			return 2;
+		case "a":
+		return 3;
 		default:
 			return -1;
 		}
 	}
 
-		private void preencherTabela() {
-			texto="";
-			for (Manutencao m : ProcessaManutencoes.manutencoes) {
-				texto+=m.toString();	
-			}
-			listar.setText(texto);
+	private void preencherTabela() {
+		texto = "";
+		for (Manutencao m : ProcessaManutencoes.manutencoes) {
+			texto += m.toString();
 		}
-		
+		listar.setText(texto);
+	}
+
 	private void cadastrar() {
 		if (data.getText().length() != 0 && equipamento.getText().length() != 0 && custo.getText().length() != 0
 				&& tempo.getText().length() != 0) {
@@ -161,69 +163,87 @@ public class FormManutencoes extends JDialog implements ActionListener {
 		}
 		ProcessaManutencoes.salvar();
 	}
-	
+
 	private void buscar() {
-		String entrada = JOptionPane.showInputDialog(this, "Digite o Id que deseja procurar");
-		int iid = Integer.parseInt(entrada);
-		Manutencao manutenco = new Manutencao(iid);
-		if(ProcessaManutencoes.manutencoes.contains(manutenco)) {
-			int indice = ProcessaManutencoes.manutencoes.indexOf(manutenco);
-			id.setText(ProcessaManutencoes.manutencoes.get(indice).getId("s"));
-			data.setText(ProcessaManutencoes.manutencoes.get(indice).getData("s"));
-			equipamento.setText(ProcessaManutencoes.manutencoes.get(indice).getEquipamento());
-			custo.setText(ProcessaManutencoes.manutencoes.get(indice).getCustoHora("s"));
-			tempo.setText(ProcessaManutencoes.manutencoes.get(indice).getTempoGasto("s")); 
-			}else {
-				JOptionPane.showMessageDialog(this, "Manutenção não encontrada");
+		String entrada = JOptionPane.showInputDialog(this, "Digite o Id da manutenção:");
+		boolean isNumeric = true;
+		if (entrada != null && !entrada.equals("")) {
+			for (int i = 0; i < entrada.length(); i++) {
+				if (!Character.isDigit(entrada.charAt(i))) {
+					isNumeric = false;
+				}
 			}
-			cadastrar.setEnabled(false);
-			alterar.setEnabled(true);
-			excluir.setEnabled(true);
+		} else {
+			isNumeric = false;
 		}
-	
+		if (isNumeric) {
+			int iid = Integer.parseInt(entrada);
+			Manutencao manu = new Manutencao(iid);
+			if (ProcessaManutencoes.manutencoes.contains(manu)) {
+				int indice = ProcessaManutencoes.manutencoes.indexOf(manu);
+				id.setText(ProcessaManutencoes.manutencoes.get(indice).getId("s"));
+				data.setText(ProcessaManutencoes.manutencoes.get(indice).getData("s"));
+				equipamento.setText(ProcessaManutencoes.manutencoes.get(indice).getEquipamento());
+				custo.setText(ProcessaManutencoes.manutencoes.get(indice).getCustoHora("s"));
+				tempo.setText(ProcessaManutencoes.manutencoes.get(indice).getTempoGasto("s"));
+				cadastrar.setEnabled(false);
+				alterar.setEnabled(true);
+				excluir.setEnabled(true);
+				ProcessaManutencoes.salvar();
+
+		} else {
+			JOptionPane.showMessageDialog(this, "Manutenção não encontrada!");
+		}
+		
+	}
+}
 
 	private void alterar() {
 		int idd = Integer.parseInt(id.getText());
 		Manutencao manut = new Manutencao(idd);
 		int indice = ProcessaManutencoes.manutencoes.indexOf(manut);
-		if(data.getText().length()!= 0 && equipamento.getText().length()!=0 && custo.getText().length() != 0 && tempo.getText().length() != 0) {
+		if (data.getText().length() != 0 && equipamento.getText().length() != 0 && custo.getText().length() != 0
+				&& tempo.getText().length() != 0) {
 			df.setCurrency(Currency.getInstance(Brasil));
 			double cus, temp;
 			try {
-				cus= Double.parseDouble(df.parse(custo.getText()).toString());
-				temp= Double.parseDouble(df.parse(tempo.getText()).toString());
-			}catch (ParseException e) {
+				cus = Double.parseDouble(df.parse(custo.getText()).toString());
+				temp = Double.parseDouble(df.parse(tempo.getText()).toString());
+			} catch (ParseException e) {
 				System.out.println(e);
-				cus=0;
-				temp=0;	
+				cus = 0;
+				temp = 0;
 			}
-			ProcessaManutencoes.manutencoes.set(indice, new Manutencao(idd, data.getText(), equipamento.getText(), cus, temp));
+			ProcessaManutencoes.manutencoes.set(indice,
+					new Manutencao(idd, data.getText(), equipamento.getText(), cus, temp));
 			preencherTabela();
 			limparCampos();
-			ProcessaManutencoes.salvar();
-		}else {
+			
+		} else {
 			JOptionPane.showMessageDialog(this, "Por favor, preencher todos os campos");
 		}
+		cadastrar.setEnabled(true);
 		alterar.setEnabled(false);
-		excluir.setEnabled(false);	
-		id.setText(String.format("%d", autoId));	
+		excluir.setEnabled(false);
+		id.setText(String.format("%d", autoId));
+		ProcessaManutencoes.salvar();
 	}
-	
+
 	private void excluir() {
-		int idd= Integer.parseInt(id.getText());
+		int idd = Integer.parseInt(id.getText());
 		Manutencao manutenco = new Manutencao(idd);
 		int indice = ProcessaManutencoes.manutencoes.indexOf(manutenco);
 		ProcessaManutencoes.manutencoes.remove(indice);
 		preencherTabela();
 		limparCampos();
 		cadastrar.setEnabled(true);
-		alterar.setEnabled(true);
-		excluir.setEnabled(true);
+		alterar.setEnabled(false);
+		excluir.setEnabled(false);
 		id.setText(String.format("%d", autoId));
 		ProcessaManutencoes.salvar();
-		
+
 	}
-	
+
 	private void limparCampos() {
 		id.setText(String.format("%d", autoId));
 		data.setText(null);
@@ -237,12 +257,8 @@ public class FormManutencoes extends JDialog implements ActionListener {
 		FormManutencoes tela = new FormManutencoes();
 		tela.setVisible(true);
 		ProcessaManutencoes.carregarTestes();
-		
-	}
-	
 
-	
-	
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
