@@ -37,9 +37,9 @@ public class Manutencao {
 	public Manutencao(String Linha) {
 		df.setCurrency(Currency.getInstance(BRASIL));
 		this.id = Integer.parseInt(Linha.split(";")[0]);
-		this.equipamento = Linha.split(";")[1];	
+		this.equipamento = Linha.split(";")[2];	
 		try {
-			this.data = sdf.parse(Linha.split(";")[2]);
+			this.data = sdf.parse(Linha.split(";")[1]);
 			this.custoHora = Double.parseDouble(df.parse(Linha.split(";")[3]).toString());
 			this.tempoGasto = Double.parseDouble(df.parse(Linha.split(";")[4]).toString());	
 		}catch(ParseException e) {
@@ -103,7 +103,7 @@ public class Manutencao {
 	
 	public String getTempoGasto(String s) {
 		if(tempoGasto < 0) {
-			tempoGasto*=60;
+			tempoGasto/=60;
 		}
 		return String.format("%.2f", tempoGasto);
 	}
@@ -131,13 +131,13 @@ public class Manutencao {
 
 	@Override
 	public String toString() {
-		return  id + " " +equipamento+ " " + sdf.format(data)  + " " + String.format("%.2f",custoHora)
-				+ " " + String.format("%.2f",tempoGasto) + " " + getTotal() + "\n";
+		return  id + "     " + sdf.format(data)  + "   " + equipamento+ "      "+  String.format("%.2f",custoHora)
+				+ "     " + String.format("%.2f",tempoGasto) + "   " + getTotal() + "\n";
 	}
 	
 	
 	public String toCSV() {
-		return  id + ";" + equipamento + ";" + sdf.format(data)   + ";" + String.format("%.2f",custoHora)
+		return  id + ";" + sdf.format(data)  + ";" + equipamento +";"+ String.format("%.2f",custoHora)
 				+ ";" + String.format("%.2f",tempoGasto)+ ";" + getTotal() + "\r\n";
 	}
 	

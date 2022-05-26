@@ -128,16 +128,16 @@ public class FormManutencoes extends JFrame implements ActionListener {
 	private void cadastrar() {
 		if (id.getText().length() !=0 && data.getText().length() != 0 && equipamento.getText().length()!=0 && custo.getText().length() != 0 && tempo.getText().length()!=0) {
 			df.setCurrency(Currency.getInstance(BRASIL));
-			double custo, tempo;
+			double custoInfo, tempoInfo;
 			try {
-				custo = Double.parseDouble(df.parse(lcusto.getText()).toString());
-				tempo = Double.parseDouble(df.parse(ltempo.getText()).toString());
+				custoInfo = Double.parseDouble(df.parse(custo.getText()).toString());
+				tempoInfo = Double.parseDouble(df.parse(tempo.getText()).toString());
 			} catch (ParseException e) {
 				System.out.println(e);
-				custo = 0;
-				tempo = 0;
+				custoInfo = 0;
+				tempoInfo = 0;
 			}
-			ProcessaManutencoes.manutencao.add(new Manutencao(autoId, data.getText(),equipamento.getText(),custo, tempo));
+			ProcessaManutencoes.manutencao.add(new Manutencao(autoId, data.getText(),equipamento.getText(),custoInfo, tempoInfo));
 			preencherAreaTexto();
 			limparCampos();
 		} else {
@@ -161,11 +161,11 @@ public class FormManutencoes extends JFrame implements ActionListener {
 		}
 		if (isNumeric) {
 			int Id = Integer.parseInt(entrada);
-			Manutencao pet = new Manutencao(Id);
-			if (ProcessaManutencoes.manutencao.contains(pet)) {
-				int indice = ProcessaManutencoes.manutencao.indexOf(pet);
+			Manutencao m = new Manutencao(Id);
+			if (ProcessaManutencoes.manutencao.contains(m)) {
+				int indice = ProcessaManutencoes.manutencao.indexOf(m);
 				id.setText(ProcessaManutencoes.manutencao.get(indice).getId("s"));
-				data.setText(ProcessaManutencoes.manutencao.get(indice).getData());
+				data.setText(ProcessaManutencoes.manutencao.get(indice).getData("s"));
 				equipamento.setText(ProcessaManutencoes.manutencao.get(indice).getEquipamento());
 				custo.setText(ProcessaManutencoes.manutencao.get(indice).getCustoHora("s"));
 				tempo.setText(ProcessaManutencoes.manutencao.get(indice).getTempoGasto("s"));
@@ -188,25 +188,53 @@ public class FormManutencoes extends JFrame implements ActionListener {
 	}
 
 	private void alterar() {
-		int indice = ProcessaManutencoes.manutencao.indexOf();
-		ProcessaManutencoes.manutencao.set(indice, user);
-		ProcessaManutencoes.salvar();
-		limparCampos();
-		cadastrar.setEnabled(true);
-		buscar.setEnabled(true);
+		int Id = (Integer.parseInt(id.getText()));
+		Manutencao m = new Manutencao(Id);
+		int indice= ProcessaManutencoes.indexOf(Id);
+		
+		if (id.getText().length() != 0 && data.getText().length() != 0
+				&& equipamento.getText().length() != 0 && custo.getText().length() != 0
+				&& tempo.getText().length() != 0) {
+
+			// converter o peso no formato Brasileiro usando virgula;
+			df.setCurrency(Currency.getInstance(BRASIL));
+			double c, t;
+			try {
+				c = Double.parseDouble(df.parse(custo.getText()).toString());
+				t = Double.parseDouble(df.parse(tempo.getText()).toString());
+			} catch (ParseException e) {
+				System.out.println(e);
+				t = 0;
+				c = 0;
+
+			}
+			ProcessaManutencoes.manutencao.set(indice,new Manutencao(Id, data.toString(), equipamento.getText(), c,
+					 t));
+			preencherAreaTexto();
+			limparCampos();
+			ProcessaManutencoes.salvar();
+			
+		
+		} else {
+			JOptionPane.showMessageDialog(this, "Por favor, preecha todos os campos.");
+		}
 		alterar.setEnabled(false);
 		excluir.setEnabled(false);
+		id.setText(String.format("%d", autoId));
 	}
 
 	private void excluir() {
+		int Id = (Integer.parseInt(id.getText()));
+		Manutencao manutencao = new Manutencao(Id);
+		int indice= ProcessaManutencoes.manutencao.indexOf(manutencao);
 		ProcessaManutencoes.manutencao.remove(indice);
-		ProcessaManutencoes.salvar();
+		preencherAreaTexto();
 		limparCampos();
-		id.setEnabled(true);
-		cadastrar.setEnabled(true);
-		buscar.setEnabled(true);
+		cadastrar.setEnabled(false);
 		alterar.setEnabled(false);
 		excluir.setEnabled(false);
+		id.setText(String.format("%d", autoId));
+		ProcessaManutencoes.salvar();
 	}
 
 	@Override
