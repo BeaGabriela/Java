@@ -14,6 +14,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -29,6 +30,7 @@ public class FormManutencoes extends JDialog implements ActionListener {
 	private JTextField id, data, equipamento, custo, tempo;
 	private JButton cadastrar, alterar, excluir, buscar;
 	private JTable table;
+	private JScrollPane rolagem; 
 	private DefaultTableModel tableModel;
 	private JTextArea listar;
 	private int autoId = ProcessaManutencoes.manutencoes.get(ProcessaManutencoes.manutencoes.size() - 1).getId() + 1;
@@ -39,7 +41,6 @@ public class FormManutencoes extends JDialog implements ActionListener {
 	FormManutencoes() {
 		setTitle("Registro de Manutenções");
 		setBounds(500, 200, 470, 400);
-//		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		panel = new JPanel();
 		setContentPane(panel);
 		setLayout(null);
@@ -61,7 +62,7 @@ public class FormManutencoes extends JDialog implements ActionListener {
 		Lcusto.setBounds(20, 120, 115, 30);
 		panel.add(Lcusto);
 
-		Ltempo = new JLabel("Tempo:");
+		Ltempo = new JLabel("Tempo: (H)");
 		Ltempo.setBounds(20, 155, 120, 30);
 		panel.add(Ltempo);
 
@@ -86,16 +87,25 @@ public class FormManutencoes extends JDialog implements ActionListener {
 		tempo.setBounds(135, 165, 100, 30);
 		panel.add(tempo);
 
-		listar = new JTextArea();
-		listar.setBounds(20, 250, 420, 100);
-		panel.add(listar);
-		listar.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-		preencherTabela();
-		listar.setEditable(false);
 		
-		rotulos = new JLabel("Id    Data         Equipamento  Custo Tempo  Total");
-		rotulos.setBounds(20, 200, 380, 60);
-		panel.add(rotulos);
+		table = new JTable();
+		tableModel = new DefaultTableModel();
+		tableModel.addColumn("Id");
+		tableModel.addColumn("Data");
+		tableModel.addColumn("Equipamento");
+		tableModel.addColumn("Custo");
+		tableModel.addColumn("Tempo (h)");
+		tableModel.addColumn("Total");
+		if(ProcessaManutencoes.manutencoes.size() !=0) {
+			preencherTabela();
+		}
+		
+		table= new JTable(tableModel);
+		table.setEnabled(false);;
+		rolagem = new JScrollPane(table);
+		rolagem.setBounds(20, 250, 420, 100);
+		panel.add(rolagem);
+		
 		
 		cadastrar = new JButton("Cadastrar");
 		buscar = new JButton("Consultar");
@@ -136,14 +146,18 @@ public class FormManutencoes extends JDialog implements ActionListener {
 	}
 
 	private void preencherTabela() {
-		texto = "";
-		for (Manutencao m : ProcessaManutencoes.manutencoes) {
-			texto += m.toString();
+		int totlinhas = tableModel.getRowCount();
+		if(tableModel.getRowCount()> 0) {
+			for(int i=0; i<totlinhas;i++) {
+				tableModel.removeRow(0);
+			}
 		}
-		listar.setText(texto);
-	}
-
-	private void cadastrar() {
+		for(Manutencao m : ProcessaManutencoes.manutencoes) {
+			tableModel.addRow(new String[] { m.getId("s"), m.getData("s"), m.getEquipamento(), m.getCustoHora("s"), m.getTempoGasto("s"),m.getTotal()});
+		}
+			
+		}
+				private void cadastrar() {
 		if (data.getText().length() != 0 && equipamento.getText().length() != 0 && custo.getText().length() != 0
 				&& tempo.getText().length() != 0) {
 			df.setCurrency(Currency.getInstance(Brasil));

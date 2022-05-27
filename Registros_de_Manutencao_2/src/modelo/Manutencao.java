@@ -102,10 +102,7 @@ public class Manutencao {
 	}
 	
 	public String getTempoGasto(String s) {
-		if(tempoGasto < 0) {
-			tempoGasto/=60;
-		}
-		return String.format("%.2f", tempoGasto);
+		return String.format("%.0f", tempoGasto);
 	}
 
 	public void setTempoGasto(double tempoGasto) {
@@ -125,8 +122,9 @@ public class Manutencao {
 		return id == other.id;
 	}
 	
-	public double getTotal() {
-		return  tempoGasto*custoHora;
+	public String getTotal() {
+		double total =  tempoGasto*custoHora;
+		return String.format("%.2f", total); 
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public class ProcessaManutencoes {
 	private static ManutencaoDAO md = new ManutencaoDAO();
 	
 	public static void abrir() {
-		manutencoes=md.ler();
+		manutencoes= md.ler();
 		if(manutencoes.size() ==0) {
 			manutencoes.add(new Manutencao(1,"20/02/2020","aro",20,80));
 		}
