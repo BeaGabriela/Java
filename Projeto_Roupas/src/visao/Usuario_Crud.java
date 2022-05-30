@@ -38,7 +38,7 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 	private JTextArea totalcompra;
 	private JButton cadastrar, buscarProduto, apagar, mudarVendedor;
 	private String imgIco = "D:\\fpoo\\work3\\modelo\\src\\modelo\\Roupas\\assets\\flor.png";
-	private ImageIcon icon = "C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\Projeto\\assents" ;
+//	private ImageIcon icon = "C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\Projeto\\assents" ;
 	private String[] usuarioss = {"Maria@gmail.com", "Carlos@gmail.com", "Marcelo@gmail.com", "Julia@gmail.com", "Ana@gmail.com", "Beatriz@gmail.com", "Victor@gmail.com", "admin@admin.com"};
 	private String texto = "";
 	private JTextField tfEmail;
@@ -192,10 +192,10 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 
 }
 
-	private void alternarImagens(int indice) {
-		icon = new ImageIcon(new ImageIcon([indice]).getImage().getScaledInstance(230, 200, 100));
-		imagemVendedor.setIcon(icon);
-}
+//	private void alternarImagens(int indice) {
+//		icon = new ImageIcon(new ImageIcon([indice]).getImage().getScaledInstance(230, 200, 100));
+//		imagemVendedor.setIcon(icon);
+//}
 
 	int obterIndiceEspecie(String Vendedor) {
 		switch (Vendedor) {
