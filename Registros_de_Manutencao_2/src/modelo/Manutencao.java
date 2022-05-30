@@ -102,7 +102,7 @@ public class Manutencao {
 	}
 	
 	public String getTempoGasto(String s) {
-		return String.format("%.0f", tempoGasto);
+		return String.format("%.2f", tempoGasto);
 	}
 
 	public void setTempoGasto(double tempoGasto) {

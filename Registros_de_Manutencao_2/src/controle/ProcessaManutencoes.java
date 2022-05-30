@@ -20,14 +20,6 @@ public class ProcessaManutencoes {
 	
 	public static void salvar() {
 		md.escrever(manutencoes);
-//		manutencoes= md.ler();
-	}
-	
-	public static void carregarTestes() {
-		manutencoes = new ArrayList<>();
-		manutencoes.add(new Manutencao(1, "20/02/2020","motor",20,20));
-		manutencoes.add(new Manutencao(2,"30/09/2021","compressor",60,60));
-		manutencoes.add(new Manutencao(3,"01/12/2021","carburador",80,60));
 	}
 	
 }

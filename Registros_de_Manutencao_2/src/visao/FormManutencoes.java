@@ -32,9 +32,7 @@ public class FormManutencoes extends JDialog implements ActionListener {
 	private JTable table;
 	private JScrollPane rolagem; 
 	private DefaultTableModel tableModel;
-	private JTextArea listar;
 	private int autoId = ProcessaManutencoes.manutencoes.get(ProcessaManutencoes.manutencoes.size() - 1).getId() + 1;
-	private String texto;
 	private final Locale Brasil = new Locale("pt", "BR");
 	private DecimalFormat df = new DecimalFormat("#.00");
 
@@ -274,7 +272,6 @@ public class FormManutencoes extends JDialog implements ActionListener {
 		ProcessaManutencoes.abrir();
 		FormManutencoes tela = new FormManutencoes();
 		tela.setVisible(true);
-		ProcessaManutencoes.carregarTestes();
 
 	}
 
