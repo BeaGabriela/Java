@@ -48,6 +48,10 @@ public class Venda {
 		this.valorTotal = Double.parseDouble(linha.split(";")[9]);
 	}
 
+	public Venda() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getProduto() {
 		return produto;
 	}
@@ -162,5 +166,17 @@ public class Venda {
 	public String tocsv() {
 		return codProduto + ";" + vendedor + ";" + data + ";" + cliente + ";" + produto + ";" + generoRoupa + ";" + qntProduto + ";" + valor + ";" + desconto + ";" + String.format("%.2f", valorTotal).replace(",", ".");
 	}
+
+	public String toRelatorio() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setNum(int parseInt) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 	
 }

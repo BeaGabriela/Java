@@ -1,4 +1,4 @@
-package controle;
+package DAO;
 
 
 	import java.io.BufferedReader;

@@ -143,4 +143,10 @@ public class TelaLogin extends JFrame implements ActionListener {
 		TelaLogin login = new TelaLogin();
 		login.setVisible(true);
 	}
+
+
+	public void setModal(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
 }

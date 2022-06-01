@@ -22,7 +22,7 @@ import modelo.Usuario;
 		private JMenuBar barraMenu = new JMenuBar();
 		private JMenu menuArquivo, menuSistema;
 		private JMenuItem itemProdutos, itemVendas, itemRelatorios, itemSair;
-		private ImageIcon fundo = new ImageIcon("C:\\Users\\desenvolvimento\\Desktop\\FPOO\\TrabalhoJava\\Projeto_Roupas\\assents\\lotus.png");
+		private ImageIcon fundo = new ImageIcon(".\\assents\\lotus.png");
 		private String imgIco = ".\\assets\\lotus.png";
 		private JLabel lbFundo = new JLabel();
 

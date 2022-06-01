@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import modelo.Usuario;
 import uteis.Cripto;
-
+import DAO.Usuario_DAO;
 
 public class Usuario_Processa {
 	public static ArrayList<Usuario> usuarios = new ArrayList<>();
@@ -12,15 +12,15 @@ public class Usuario_Processa {
 
 	public static void carregar() {
 		usuarios = ud.ler();
-		if(usuarios.size() == 0) {
-			usuarios.add(new Usuario("admin@admin.com",("admin")));
+		if (usuarios.size() == 0) {
+			usuarios.add(new Usuario("admin@admin.com", ("admin")));
 		}
 	}
 
 	public static void salvar() {
 		ud.escrever(usuarios);
 	}
-	
+
 	public static int checarEmail(String email) {
 		int retorno = -1;
 		for (int i = 0; i < usuarios.size(); i++) {

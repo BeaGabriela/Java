@@ -1,4 +1,4 @@
-package controle;
+package DAO;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import modelo.Venda;
 
-public class DAO {
+public class Dao {
 	
 	private BufferedReader br;
 	private BufferedWriter bw;
