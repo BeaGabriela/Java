@@ -1,10 +1,16 @@
 package modelo;
 
+import java.awt.Color;
+
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
+
+import javax.swing.JTextPane;
+
+import controllers.OrcamentoProcess;
 
 public class Orcamento {
 	private int id;
@@ -17,7 +23,6 @@ public class Orcamento {
 	private DecimalFormat df = new DecimalFormat("#.00");
 
 	public Orcamento(int id, String fornecedor, String produto, double preco, boolean maisBarato) {
-		super();
 		this.id = id;
 		this.fornecedor = fornecedor;
 		this.produto = produto;
@@ -35,7 +40,8 @@ public class Orcamento {
 		this.fornecedor = linha.split(";")[1];
 		this.produto = linha.split(";")[2];
 		try {
-			this.preco = Double.parseDouble(df.parse(linha.split(";")[3]).toString());
+			this.preco = Double.parseDouble(df.parse(linha.split(";")[3]).toString().replace(",", "."));
+			this.maisBarato = false;
 		} catch (ParseException e) {
 			System.out.println(e);
 		}
@@ -81,38 +87,37 @@ public class Orcamento {
 		this.preco = preco;
 	}
 
-	public boolean getMaisBarato() {
-		boolean b = false;
-		int BARATO = 0;
-		for(int i=0; i< preco;i++) {
-			if(preco < BARATO) {
-				b = true;
-			}
-			
-			
-		}
+	public boolean isMaisBarato() {
 		return maisBarato;
-		
-		
 	}
-
-	public void setMaisBarato(boolean b) {
-		this.maisBarato = b;
-
+	
+	public void setMaisBarato(boolean maisBarato) {
+		this.maisBarato = maisBarato;
+	
 	}
+	
+//	public String comprar() {
+//		if(maisBarato) {
+//			return "Comprar";
+//		}else {
+//		return null;
+//	}
+//	}
 
-	public double Equals(double preco) {
-		double menor=0;
-		if(preco < menor) {
-			menor=preco;
-			
-		}
-		return preco;
-		
-	}
+	
+
+//	public double Equals(double preco) {
+//		double menor=0;
+//		if(preco < menor) {
+//			menor=preco;
+//			
+//		}
+//		return preco;
+//		
+//	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(id );
 	}
 
 	@Override
@@ -137,5 +142,8 @@ public class Orcamento {
 		return  id + ";" + fornecedor + ";" + produto + ";" + preco
 				+ ";" + maisBarato+"\r\n";
 	}
+
+	
+	
 
 }

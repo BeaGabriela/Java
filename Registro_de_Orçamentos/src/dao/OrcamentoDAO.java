@@ -13,17 +13,17 @@ import modelo.Orcamento;
 public class OrcamentoDAO {
 	private BufferedReader br;
 	private BufferedWriter bw;
-	private String arquivo="C:\\Users\\desenvolvimento\\Desktop\\Programas-em-Java\\Registro_de_Orçamentos\\orcamentos\\orcamentos.csv";
+	private String arquivo="C:\\Users\\Family\\Desktop\\Programas-em-Java\\Registro_de_Orçamentos\\orcamentos\\orcamentos.csv";
 	private ArrayList<Orcamento> orcamentos = new ArrayList<>();
 	
 	public ArrayList<Orcamento> ler(){
-		Orcamento orc;
+		Orcamento or;
 		try {
 			br = new BufferedReader (new FileReader(arquivo));
 			String linha = br.readLine();
 			while(linha != null) {
-				orc = new Orcamento(linha);
-				orcamentos.add(orc);
+				or = new Orcamento(linha);
+				orcamentos.add(or);
 				linha = br.readLine();
 			}
 			br.close();

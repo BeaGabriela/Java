@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Currency;
 import java.util.Locale;
 
@@ -36,6 +37,8 @@ public class OrcamentoForm extends JDialog implements ActionListener {
 	private DefaultTableModel tableModel;
 	private int autoId = OrcamentoProcess.orcamento.get(OrcamentoProcess.orcamento.size() - 1).getId() + 1;
 	private final Locale Brasil = new Locale("pt", "BR");
+	 private ArrayList<Orcamento> orcamento = new ArrayList<>();
+	
 	
 	OrcamentoForm() {
 		setTitle("Registros de Orcamentos");
@@ -86,7 +89,9 @@ public class OrcamentoForm extends JDialog implements ActionListener {
 		tableModel.addColumn("Preço");
 		tableModel.addColumn("Mais barato");
 		if (OrcamentoProcess.orcamento.size() != 0) {
-			listarTodos();
+		listarTodos();
+		comprar();
+			
 		}
 
 		table = new JTable(tableModel);
@@ -139,7 +144,7 @@ public class OrcamentoForm extends JDialog implements ActionListener {
 			}
 		}
 		for (Orcamento o : OrcamentoProcess.orcamento) {
-			tableModel.addRow(new String[] { o.getId("s"), o.getFornecedor(), o.getProduto(), o.getPreco("s"),});
+			tableModel.addRow(new String[] { o.getId("s"), o.getFornecedor(), o.getProduto(), o.getPreco("s")});
 		}
 
 	}
@@ -147,35 +152,31 @@ public class OrcamentoForm extends JDialog implements ActionListener {
 	public void adicionar() {
 		if (fornecedor.getText().length() != 0 && produto.getText().length() != 0 && preco.getText().length() != 0) {
 			df.setCurrency(Currency.getInstance(Brasil));
-			double pre;
-			boolean comprar = true;
-			try {
-				pre = Double.parseDouble(df.parse(preco.getText()).toString());
-			} catch (ParseException e) {
-				System.out.println(e);
-				pre = 0;
-	}
-			for(int i =0; i<OrcamentoProcess.orcamento.size(); i++) {
-				if(OrcamentoProcess.orcamento.get(i).getProduto().contains(produto.getText())) {
-					if(OrcamentoProcess.orcamento.get(i).getPreco() > pre) {
-						OrcamentoProcess.orcamento.get(i).setMaisBarato(false);
-						comprar= true;
-						
-						
-					}
-					
-				}
-			}
-			OrcamentoProcess.orcamento.add(new Orcamento(autoId, fornecedor.getText(), produto.getText(), pre, comprar));
+			OrcamentoProcess.orcamento.add(new Orcamento(autoId, fornecedor.getText().toString(), produto.getText().toString(),
+					Double.parseDouble(preco.getText().toString()), false));
+		
+//			try {
+//				pre = Double.parseDouble(df.parse(preco.getText()).toString());
+//			} catch (ParseException e) {
+//				System.out.println(e);
+//				pre = 0;
+//	}
+//			for(int i =0; i<OrcamentoProcess.orcamento.size(); i++) {
+//				if(OrcamentoProcess.orcamento.get(i).getProduto().contains(produto.getText())) {
+//					if(OrcamentoProcess.orcamento.get(i).getPreco() > pre) {
+//						OrcamentoProcess.orcamento.get(i).setMaisBarato(false);
+//						comprar= true;
+		} else {
+			JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos");
+		}
+
 	autoId++;
 	listarTodos();
+	comprar();
 	limparCampos();
 	OrcamentoProcess.salvar();
-} else {
-	JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos");
 }
-
-}
+	
 		private void limparCampos() {
 			id.setText(String.format("%d", autoId));
 			fornecedor.setText(null);
@@ -210,6 +211,7 @@ public class OrcamentoForm extends JDialog implements ActionListener {
 		Balterar.setEnabled(false);
 		Bexcluir.setEnabled(false);
 		id.setText(String.format("%d", autoId));
+		comprar();
 			
 	}
 	public void excluir() {
@@ -224,6 +226,7 @@ public class OrcamentoForm extends JDialog implements ActionListener {
 		Bexcluir.setEnabled(false);
 		id.setText(String.format("%d", autoId));
 		OrcamentoProcess.salvar();
+		comprar();
 
 	}
 	
@@ -252,12 +255,20 @@ public class OrcamentoForm extends JDialog implements ActionListener {
 				Balterar.setEnabled(true);
 				Bexcluir.setEnabled(true);
 				OrcamentoProcess.salvar();
+				
 			} else {
-				JOptionPane.showMessageDialog(this, "Manutenção não encontrada!");
+				JOptionPane.showMessageDialog(this, "Orçamento não encontrado!");
 			}
 			
 		}
 	}	
+	
+	public void comprar() {
+		for (Orcamento orcament : OrcamentoProcess.orcamento) {
+			OrcamentoProcess.compararProdutos(orcament.getProduto());
+		}
+	}
+
 
 	public static void main(String[] args) {
 		OrcamentoProcess.abrir();
