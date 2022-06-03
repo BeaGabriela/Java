@@ -11,12 +11,12 @@ public class Orcamento {
 	private String fornecedor;
 	private String produto;
 	private double preco;
-	private String maisBarato;
+	private boolean maisBarato;
 
 	private final Locale BRASIL = new Locale("pt", "BR");
 	private DecimalFormat df = new DecimalFormat("#.00");
 
-	public Orcamento(int id, String fornecedor, String produto, double preco, String maisBarato) {
+	public Orcamento(int id, String fornecedor, String produto, double preco, boolean maisBarato) {
 		super();
 		this.id = id;
 		this.fornecedor = fornecedor;
@@ -81,7 +81,7 @@ public class Orcamento {
 		this.preco = preco;
 	}
 
-	public String getMaisBarato() {
+	public boolean getMaisBarato() {
 		boolean b = false;
 		int BARATO = 0;
 		for(int i=0; i< preco;i++) {
@@ -96,8 +96,8 @@ public class Orcamento {
 		
 	}
 
-	public void setMaisBarato(String maisBarato) {
-		this.maisBarato = maisBarato;
+	public void setMaisBarato(boolean b) {
+		this.maisBarato = b;
 
 	}
 

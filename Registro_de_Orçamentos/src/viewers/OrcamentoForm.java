@@ -139,7 +139,7 @@ public class OrcamentoForm extends JDialog implements ActionListener {
 			}
 		}
 		for (Orcamento o : OrcamentoProcess.orcamento) {
-			tableModel.addRow(new String[] { o.getId("s"), o.getFornecedor(), o.getProduto(), o.getPreco("s"), o.getMaisBarato()});
+			tableModel.addRow(new String[] { o.getId("s"), o.getFornecedor(), o.getProduto(), o.getPreco("s"),});
 		}
 
 	}
@@ -148,13 +148,25 @@ public class OrcamentoForm extends JDialog implements ActionListener {
 		if (fornecedor.getText().length() != 0 && produto.getText().length() != 0 && preco.getText().length() != 0) {
 			df.setCurrency(Currency.getInstance(Brasil));
 			double pre;
+			boolean comprar = true;
 			try {
 				pre = Double.parseDouble(df.parse(preco.getText()).toString());
 			} catch (ParseException e) {
 				System.out.println(e);
 				pre = 0;
 	}
-			OrcamentoProcess.orcamento.add(new Orcamento(autoId, fornecedor.getText(), produto.getText(), pre, maisBararto));
+			for(int i =0; i<OrcamentoProcess.orcamento.size(); i++) {
+				if(OrcamentoProcess.orcamento.get(i).getProduto().contains(produto.getText())) {
+					if(OrcamentoProcess.orcamento.get(i).getPreco() > pre) {
+						OrcamentoProcess.orcamento.get(i).setMaisBarato(false);
+						comprar= true;
+						
+						
+					}
+					
+				}
+			}
+			OrcamentoProcess.orcamento.add(new Orcamento(autoId, fornecedor.getText(), produto.getText(), pre, comprar));
 	autoId++;
 	listarTodos();
 	limparCampos();
@@ -187,7 +199,7 @@ public class OrcamentoForm extends JDialog implements ActionListener {
 				System.out.println(e);
 				pre = 0;
 	}
-			OrcamentoProcess.orcamento.set(indice,new Orcamento(idd, fornecedor.getText(), produto.getText(), pre, maisBararto));
+			OrcamentoProcess.orcamento.set(indice,new Orcamento(idd, fornecedor.getText(), produto.getText(), pre, true));
 			listarTodos();
 			limparCampos();
 			OrcamentoProcess.salvar();
