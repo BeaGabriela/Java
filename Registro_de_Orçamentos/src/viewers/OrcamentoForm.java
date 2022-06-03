@@ -27,6 +27,7 @@ public class OrcamentoForm extends JDialog implements ActionListener {
 	private JTable table;
 	private JLabel Lid, Lfornecedor, Lproduto, Lpreco;
 	private JTextField id, fornecedor, produto, preco;
+	private String maisBararto;
 //	private JPanel adicionar, alterar, excluir, buscar;
 	private JTextField texto;
 	private JScrollPane rolagem;
@@ -138,7 +139,7 @@ public class OrcamentoForm extends JDialog implements ActionListener {
 			}
 		}
 		for (Orcamento o : OrcamentoProcess.orcamento) {
-			tableModel.addRow(new String[] { o.getId("s"), o.getFornecedor(), o.getProduto(), o.getPreco("s") });
+			tableModel.addRow(new String[] { o.getId("s"), o.getFornecedor(), o.getProduto(), o.getPreco("s"), o.getMaisBarato()});
 		}
 
 	}
@@ -153,7 +154,7 @@ public class OrcamentoForm extends JDialog implements ActionListener {
 				System.out.println(e);
 				pre = 0;
 	}
-			OrcamentoProcess.orcamento.add(new Orcamento(autoId, fornecedor.getText(), produto.getText(), pre, false));
+			OrcamentoProcess.orcamento.add(new Orcamento(autoId, fornecedor.getText(), produto.getText(), pre, maisBararto));
 	autoId++;
 	listarTodos();
 	limparCampos();
@@ -186,7 +187,7 @@ public class OrcamentoForm extends JDialog implements ActionListener {
 				System.out.println(e);
 				pre = 0;
 	}
-			OrcamentoProcess.orcamento.set(indice,new Orcamento(idd, fornecedor.getText(), produto.getText(), pre, false));
+			OrcamentoProcess.orcamento.set(indice,new Orcamento(idd, fornecedor.getText(), produto.getText(), pre, maisBararto));
 			listarTodos();
 			limparCampos();
 			OrcamentoProcess.salvar();

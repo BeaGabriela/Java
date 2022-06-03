@@ -21,7 +21,7 @@ public class OrcamentoProcess {
 	public static void abrir() {
 		orcamento = od.ler();
 		if(orcamento.size() == 0) {
-			orcamento.add(new Orcamento(1, "Mario", "Caixa", 50, true));
+			orcamento.add(new Orcamento(1, "Mario", "Caixa", 50, "true"));
 			
 		}
 		

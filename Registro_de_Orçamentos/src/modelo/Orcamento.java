@@ -11,12 +11,12 @@ public class Orcamento {
 	private String fornecedor;
 	private String produto;
 	private double preco;
-	private boolean maisBarato;
+	private String maisBarato;
 
 	private final Locale BRASIL = new Locale("pt", "BR");
 	private DecimalFormat df = new DecimalFormat("#.00");
 
-	public Orcamento(int id, String fornecedor, String produto, double preco, boolean maisBarato) {
+	public Orcamento(int id, String fornecedor, String produto, double preco, String maisBarato) {
 		super();
 		this.id = id;
 		this.fornecedor = fornecedor;
@@ -81,20 +81,35 @@ public class Orcamento {
 		this.preco = preco;
 	}
 
-	public boolean isMaisBarato() {
-		return true;
+	public String getMaisBarato() {
+		boolean b = false;
+		int BARATO = 0;
+		for(int i=0; i< preco;i++) {
+			if(preco < BARATO) {
+				b = true;
+			}
+			
+			
+		}
+		return maisBarato;
+		
+		
 	}
 
-	public void setMaisBarato(boolean maisBarato) {
+	public void setMaisBarato(String maisBarato) {
 		this.maisBarato = maisBarato;
 
 	}
 
-		public String compararPreco() {
-			return fornecedor;
+	public double Equals(double preco) {
+		double menor=0;
+		if(preco < menor) {
+			menor=preco;
 			
 		}
-
+		return preco;
+		
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -120,7 +135,7 @@ public class Orcamento {
 
 	public String toCSV() {
 		return  id + ";" + fornecedor + ";" + produto + ";" + preco
-				+ ";" + maisBarato;
+				+ ";" + maisBarato+"\r\n";
 	}
 
 }
