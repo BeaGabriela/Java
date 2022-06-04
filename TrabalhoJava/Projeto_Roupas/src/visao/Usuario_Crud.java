@@ -33,8 +33,7 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel painel;
 	private JLabel lbEmail, lbSenha;
-	private JButton cadastrar, buscarProduto, apagar, mudarVendedor;
-
+	private JButton cadastrar, buscarProduto, apagar, mudarVendedor, vendas;
 	private String[] usuarioss = {"Maria@gmail.com", "Carlos@gmail.com", "Marcelo@gmail.com", "Julia@gmail.com", "Ana@gmail.com", "Beatriz@gmail.com", "Victor@gmail.com", "admin@admin.com"};
 	private String texto = "";
 	private JTextField tfEmail;
@@ -76,25 +75,28 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 		buscarProduto = new JButton("Buscar");
 		mudarVendedor = new JButton("Alterar");
 		apagar = new JButton("Excluir");
-
-		cadastrar.setBounds(210, 140, 100, 30);
-		buscarProduto.setBounds(335, 140, 100, 30);
-		mudarVendedor.setBounds(460, 140, 100, 30);
+		vendas = new JButton("Vendas");
+		
+		cadastrar.setBounds(150, 140, 100, 30);
+		buscarProduto.setBounds(257, 140, 100, 30);
+		mudarVendedor.setBounds(366, 140, 100, 30);
 		mudarVendedor.setEnabled(false);
-		apagar.setBounds(575, 140, 100, 30);
+		apagar.setBounds(475, 140, 100, 30);
 		apagar.setEnabled(false);
+		vendas.setBounds(585, 140, 100, 30);
 
 		cadastrar.addActionListener(this);
 		buscarProduto.addActionListener(this);
-
+		vendas.addActionListener(this);
 		apagar.addActionListener(this);
 
 		//
 		painel.add(cadastrar);
 		painel.add(buscarProduto);
 		//
-	painel.add(apagar);
+	    painel.add(apagar);
 		painel.add(mudarVendedor);
+		painel.add(vendas);
 
 	
 	tableModel = new DefaultTableModel();
@@ -178,7 +180,7 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 			mudarVendedor.setEnabled(false);
 			apagar.setEnabled(false);
 		} else {
-			JOptionPane.showMessageDialog(this, "Preencha o email e a senha de no mínimo 4 dígitos");
+			JOptionPane.showMessageDialog(this, "Preencha o email e a senha de no mínimo) 4 dígitos");
 		}
 	}
 	
@@ -194,6 +196,15 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 		apagar.setEnabled(false);
 	}
 	
+	private void vendas() {
+		this.dispose();
+		TelaLogin telaLogin = new TelaLogin();
+		telaLogin.setVisible(true);
+		
+		
+	}
+	
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == cadastrar) {
@@ -207,6 +218,9 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == apagar) {
 			apagar();
+		}
+		if (e.getSource() == vendas) {
+			vendas();
 		}
 	}
 

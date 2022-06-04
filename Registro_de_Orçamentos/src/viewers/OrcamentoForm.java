@@ -26,10 +26,8 @@ public class OrcamentoForm extends JDialog implements ActionListener {
 
 	private JPanel panel;
 	private JTable table;
-	private JLabel Lid, Lfornecedor, Lproduto, Lpreco;
+	private JLabel Lid, Lfornecedor, Lproduto, Lpreco, lnome;
 	private JTextField id, fornecedor, produto, preco;
-	private String maisBararto;
-//	private JPanel adicionar, alterar, excluir, buscar;
 	private JTextField texto;
 	private JScrollPane rolagem;
 	private DecimalFormat df = new DecimalFormat("#.00");
@@ -42,43 +40,49 @@ public class OrcamentoForm extends JDialog implements ActionListener {
 	
 	OrcamentoForm() {
 		setTitle("Registros de Orcamentos");
-		setBounds(500, 200, 470, 400);
+		setBounds(500, 200, 470, 380);
 		panel = new JPanel();
 		setContentPane(panel);
 		setLayout(null);
-		panel.setBackground(new Color(204, 255, 229));
+		panel.setBackground(new Color (224,255,255));
+		
+		lnome = new JLabel("Formulário de Orçamentos");
+		lnome.setBounds(150, 5, 200, 30);
+		panel.add(lnome);
+		
+		
 
 		Lid = new JLabel("Id:");
-		Lid.setBounds(20, 20, 100, 30);
+		Lid.setBounds(15, 40, 100, 30);
 		panel.add(Lid);
 
 		Lfornecedor = new JLabel("Fornecedor:");
-		Lfornecedor.setBounds(20, 55, 100, 30);
+		Lfornecedor.setBounds(15, 70, 100, 30);
 		panel.add(Lfornecedor);
 
 		Lproduto = new JLabel("Produto:");
-		Lproduto.setBounds(20, 90, 120, 30);
+		Lproduto.setBounds(15, 100, 120, 30);
 		panel.add(Lproduto);
 
 		Lpreco = new JLabel("Preço:");
-		Lpreco.setBounds(20, 120, 115, 30);
+		Lpreco.setBounds(15, 130, 115, 30);
 		panel.add(Lpreco);
 
 		id = new JTextField(String.format("%d", autoId));
 		id.setEnabled(false);
-		id.setBounds(135, 20, 100, 30);
+		id.setBounds(100, 40, 150, 30);
 		panel.add(id);
 
 		fornecedor = new JTextField();
-		fornecedor.setBounds(135, 55, 100, 30);
+		fornecedor.setBounds(100, 70, 150, 30);
 		panel.add(fornecedor);
 
 		produto = new JTextField();
-		produto.setBounds(135, 90, 100, 30);
+		produto.setBounds(100, 100, 150, 30);
 		panel.add(produto);
 
 		preco = new JTextField();
-		preco.setBounds(135, 130, 100, 30);
+		preco.setBounds(100, 130, 150, 30);
 		panel.add(preco);
 
 		table = new JTable();
@@ -97,18 +101,19 @@ public class OrcamentoForm extends JDialog implements ActionListener {
 		table = new JTable(tableModel);
 		table.setEnabled(false);
 		rolagem = new JScrollPane(table);
-		rolagem.setBounds(20, 210, 420, 100);
+		rolagem.setBounds(20, 180, 420, 120);
 		panel.add(rolagem);
 
-		Badicionar = new JButton("Adicionar");
-		Balterar = new JButton("Alterar");
+		Badicionar = new JButton("Adicionar");	
 		Bbuscar = new JButton("Buscar");
+		Balterar = new JButton("Alterar");
 		Bexcluir = new JButton("Excluir");
+		
 
-		Badicionar.setBounds(335, 50, 100, 30);
-		Bbuscar.setBounds(335, 90, 100, 30);
-		Balterar.setBounds(335, 130, 100, 30);
-		Bexcluir.setBounds(335, 170, 100, 30);
+		Badicionar.setBounds(310, 40, 140, 30);
+		Bbuscar.setBounds(310, 70, 140, 30);
+		Balterar.setBounds(310, 100, 140, 30);
+		Bexcluir.setBounds(310, 130, 140, 30);
 
 		panel.add(Badicionar);
 		panel.add(Bbuscar);
