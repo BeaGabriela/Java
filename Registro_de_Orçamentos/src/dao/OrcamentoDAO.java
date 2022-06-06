@@ -13,7 +13,7 @@ import modelo.Orcamento;
 public class OrcamentoDAO {
 	private BufferedReader br;
 	private BufferedWriter bw;
-	private String arquivo="C:\\Users\\Family\\Desktop\\Programas-em-Java\\Registro_de_Orçamentos\\orcamentos\\orcamentos.csv";
+	private String arquivo=".\\orcamentos\\orcamentos.csv";
 	private ArrayList<Orcamento> orcamentos = new ArrayList<>();
 	
 	public ArrayList<Orcamento> ler(){

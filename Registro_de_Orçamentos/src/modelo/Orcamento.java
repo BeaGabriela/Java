@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
@@ -11,6 +12,7 @@ import java.util.Objects;
 import javax.swing.JTextPane;
 
 import controllers.OrcamentoProcess;
+import viewers.OrcamentoForm;
 
 public class Orcamento {
 	private int id;
@@ -21,13 +23,14 @@ public class Orcamento {
 
 	private final Locale BRASIL = new Locale("pt", "BR");
 	private DecimalFormat df = new DecimalFormat("#.00");
+	private static ArrayList<Orcamento>orcamento = new ArrayList<>();
 
 	public Orcamento(int id, String fornecedor, String produto, double preco, boolean maisBarato) {
 		this.id = id;
 		this.fornecedor = fornecedor;
 		this.produto = produto;
 		this.preco = preco;
-		this.maisBarato = maisBarato;
+		this.maisBarato= maisBarato;
 	}
 
 	public Orcamento(int id) {
@@ -41,7 +44,7 @@ public class Orcamento {
 		this.produto = linha.split(";")[2];
 		try {
 			this.preco = Double.parseDouble(df.parse(linha.split(";")[3]).toString().replace(",", "."));
-			this.maisBarato = false;
+			this.maisBarato= Boolean.parseBoolean(linha.split(";")[4]);
 		} catch (ParseException e) {
 			System.out.println(e);
 		}
@@ -91,30 +94,16 @@ public class Orcamento {
 		return maisBarato;
 	}
 	
+	public String isMaisBarato(String s) {
+		return String.valueOf(maisBarato);
+		
+	}
+	
 	public void setMaisBarato(boolean maisBarato) {
 		this.maisBarato = maisBarato;
 	
 	}
-	
-//	public String comprar() {
-//		if(maisBarato) {
-//			return "Comprar";
-//		}else {
-//		return null;
-//	}
-//	}
 
-	
-
-//	public double Equals(double preco) {
-//		double menor=0;
-//		if(preco < menor) {
-//			menor=preco;
-//			
-//		}
-//		return preco;
-//		
-//	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(id );
@@ -135,13 +124,21 @@ public class Orcamento {
 	@Override
 	public String toString() {
 		return  id + "\t" + fornecedor + "\t" + produto + String.format("%.2f", preco) + "\t"
-			 + maisBarato ;
+			 + comprar() ;
 	}
 
 	public String toCSV() {
 		return  id + ";" + fornecedor + ";" + produto + ";" + preco
 				+ ";" + maisBarato+"\r\n";
 	}
+
+	public String comprar() {
+		if (maisBarato) {
+			return "Barato";
+		}
+		return "Caro";
+	}
+	
 
 	
 	
