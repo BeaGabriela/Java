@@ -31,7 +31,7 @@ import modelo.Usuario;
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
 			setTitle("Lótus de Seda - Loja de Roupas");
 			setIconImage(new ImageIcon(imgIco).getImage());
-			setBounds(200, 100, 700, 500);
+			setBounds(900, 150, 700, 500);
 			panel = new JPanel();
 			setJMenuBar(barraMenu);
 			setContentPane(panel);
