@@ -28,6 +28,7 @@ public class Usuario {
 		this.senha = linha.split(";")[1];
 		this.img = linha.split(";")[2];
 	}
+
 	public Usuario(int idd) {
 		// TODO Auto-generated constructor stub
 	}

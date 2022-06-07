@@ -34,7 +34,8 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 	private JPanel painel;
 	private JLabel lbEmail, lbSenha;
 	private JButton cadastrar, buscarProduto, apagar, mudarVendedor, vendas;
-	private String[] usuarioss = {"Maria@gmail.com", "Carlos@gmail.com", "Marcelo@gmail.com", "Julia@gmail.com", "Ana@gmail.com", "Beatriz@gmail.com", "Victor@gmail.com", "admin@admin.com"};
+	private String[] usuarioss = { "Maria@gmail.com", "Carlos@gmail.com", "Marcelo@gmail.com", "Julia@gmail.com",
+			"Ana@gmail.com", "Beatriz@gmail.com", "Victor@gmail.com", "admin@admin.com" };
 	private String texto = "";
 	private JTextField tfEmail;
 	private JPasswordField pfSenha;
@@ -44,7 +45,7 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 	private int indice = -1;
 
 	Usuario_Crud() {
-		
+
 		setTitle("Gerenciamento de Vendedores");
 		setBounds(500, 200, 880, 550);
 		painel = new JPanel();
@@ -52,7 +53,7 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 		setContentPane(painel);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(null);
-				
+
 		lbEmail = new JLabel("E-mail:");
 		lbEmail.setBounds(230, 20, 100, 30);
 		painel.add(lbEmail);
@@ -70,13 +71,12 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 		pfSenha.setBounds(320, 55, 300, 30);
 		painel.add(pfSenha);
 
-		
 		cadastrar = new JButton("Cadastrar");
 		buscarProduto = new JButton("Buscar");
 		mudarVendedor = new JButton("Alterar");
 		apagar = new JButton("Excluir");
 		vendas = new JButton("Vendas");
-		
+
 		cadastrar.setBounds(150, 140, 100, 30);
 		buscarProduto.setBounds(257, 140, 100, 30);
 		mudarVendedor.setBounds(366, 140, 100, 30);
@@ -94,27 +94,25 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 		painel.add(cadastrar);
 		painel.add(buscarProduto);
 		//
-	    painel.add(apagar);
+		painel.add(apagar);
 		painel.add(mudarVendedor);
 		painel.add(vendas);
 
-	
-	tableModel = new DefaultTableModel();
-	tableModel.addColumn("Email Vendedor");
-	tableModel.addColumn("Senha");
-	if (Usuario_Processa.usuarios.size() != 0) {
-		preencheTabela();
+		tableModel = new DefaultTableModel();
+		tableModel.addColumn("Email Vendedor");
+		tableModel.addColumn("Senha");
+		if (Usuario_Processa.usuarios.size() != 0) {
+			preencheTabela();
+		}
+
+		table = new JTable(tableModel);
+		table.setEnabled(false);
+		scroll = new JScrollPane(table);
+		scroll.setBounds(50, 260, 760, 200);
+		painel.add(scroll);
+
 	}
-	
-	table = new JTable(tableModel);
-	table.setEnabled(false);
-	scroll = new JScrollPane(table);
-	scroll.setBounds(50, 260, 760, 200);
-	painel.add(scroll);
 
-}
-
-	
 	private void preencheTabela() {
 		int totLinhas = tableModel.getRowCount();
 		if (tableModel.getRowCount() > 0) {
@@ -122,20 +120,20 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 				tableModel.removeRow(0);
 			}
 		}
-	
+
 		for (Usuario u : Usuario_Processa.usuarios) {
 			tableModel.addRow(new String[] { u.getEmail(), u.getSenha() });
 		}
 	}
-	
+
 	private void limparCampos() {
 		tfEmail.setText("");
 		pfSenha.setText("");
 	}
-	
+
 	private void cadastrar() {
 		if (tfEmail.getText().length() > 0 && new String(pfSenha.getPassword()).length() > 3) {
-			Usuario user = new Usuario(tfEmail.getText(),(new String(pfSenha.getPassword())));
+			Usuario user = new Usuario(tfEmail.getText(), (new String(pfSenha.getPassword())));
 			if (Usuario_Processa.usuarios.contains(user)) {
 				JOptionPane.showMessageDialog(this, "Usuário já cadastrado");
 			} else {
@@ -148,7 +146,7 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(this, "Preencha o email e a senha de no mínimo 4 dígitos");
 		}
 	}
-	
+
 	private void buscar() {
 		if (tfEmail.getText().length() > 0) {
 			Usuario user = new Usuario(tfEmail.getText(), "");
@@ -166,10 +164,10 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(this, "Preencha o campo email");
 		}
 	}
-	
+
 	private void alterar() {
 		if (tfEmail.getText().length() > 0 && new String(pfSenha.getPassword()).length() > 3) {
-			Usuario user = new Usuario(tfEmail.getText(),(new String(pfSenha.getPassword())));
+			Usuario user = new Usuario(tfEmail.getText(), (new String(pfSenha.getPassword())));
 			Usuario_Processa.usuarios.set(indice, user);
 			Usuario_Processa.salvar();
 			preencheTabela();
@@ -183,7 +181,7 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(this, "Preencha o email e a senha de no mínimo) 4 dígitos");
 		}
 	}
-	
+
 	private void apagar() {
 		Usuario_Processa.usuarios.remove(indice);
 		Usuario_Processa.salvar();
@@ -195,16 +193,14 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 		mudarVendedor.setEnabled(false);
 		apagar.setEnabled(false);
 	}
-	
+
 	private void vendas() {
 		this.dispose();
 		TelaLogin telaLogin = new TelaLogin();
 		telaLogin.setVisible(true);
-		
-		
+
 	}
-	
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == cadastrar) {
@@ -225,5 +221,3 @@ public class Usuario_Crud extends JFrame implements ActionListener {
 	}
 
 }
-
-	

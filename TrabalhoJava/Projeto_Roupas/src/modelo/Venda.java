@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Venda {
-	
+
 	private int codProduto;
 	private String produto;
 	private int qntProduto;
@@ -16,13 +16,13 @@ public class Venda {
 	private String cliente;
 	private String generoRoupa;
 	private double valorTotal;
-	
+
 	public Venda(int codProduto) {
 		this.codProduto = codProduto;
 	}
 
-	public Venda(int codProduto, String vendedor, String data, String cliente, String produto, String generoRoupa, int qntProduto,
-			double valor, double desconto, double valorTotal) {
+	public Venda(int codProduto, String vendedor, String data, String cliente, String produto, String generoRoupa,
+			int qntProduto, double valor, double desconto, double valorTotal) {
 		this.codProduto = codProduto;
 		this.vendedor = vendedor;
 		this.data = data;
@@ -63,7 +63,7 @@ public class Venda {
 	public int getQntProduto() {
 		return qntProduto;
 	}
-	
+
 	public String getQntProduto(String s) {
 		return String.format("%d", qntProduto);
 	}
@@ -91,7 +91,7 @@ public class Venda {
 	public double getValor() {
 		return valor;
 	}
-	
+
 	public String getValor(String s) {
 		return String.format("%.2f", valor);
 	}
@@ -103,7 +103,7 @@ public class Venda {
 	public double getDesconto() {
 		return desconto;
 	}
-	
+
 	public String getDesconto(String s) {
 		return String.format("%.0f", desconto);
 	}
@@ -127,7 +127,7 @@ public class Venda {
 	public int getcodProduto() {
 		return codProduto;
 	}
-	
+
 	public String getcodProduto(String s) {
 		return String.format("%d", codProduto);
 	}
@@ -147,24 +147,25 @@ public class Venda {
 	public void setGeneroRoupa(String generoRoupa) {
 		this.generoRoupa = generoRoupa;
 	}
-	
+
 	public double getvalorTotal() {
 		return valorTotal;
 	}
-	
+
 	public void setvalorTotal() {
-		valorTotal = (valor * qntProduto  * desconto) / 100;
+		valorTotal = (valor * qntProduto * desconto) / 100;
 	}
-
-
 
 	@Override
 	public String toString() {
-		return  codProduto + "\t" + vendedor + "\t" + data + "\t" + cliente + "\t" + produto + "\t" + generoRoupa + "\t" + qntProduto + "\t" + valor + "\t" + desconto + "\t" + String.format("%.2f", valorTotal).replace(",", ".");
+		return codProduto + "\t" + vendedor + "\t" + data + "\t" + cliente + "\t" + produto + "\t" + generoRoupa + "\t"
+				+ qntProduto + "\t" + valor + "\t" + desconto + "\t"
+				+ String.format("%.2f", valorTotal).replace(",", ".");
 	}
-	
+
 	public String tocsv() {
-		return codProduto + ";" + vendedor + ";" + data + ";" + cliente + ";" + produto + ";" + generoRoupa + ";" + qntProduto + ";" + valor + ";" + desconto + ";" + String.format("%.2f", valorTotal).replace(",", ".");
+		return codProduto + ";" + vendedor + ";" + data + ";" + cliente + ";" + produto + ";" + generoRoupa + ";"
+				+ qntProduto + ";" + valor + ";" + desconto + ";" + String.format("%.2f", valorTotal).replace(",", ".");
 	}
 
 	public String toRelatorio() {
@@ -174,9 +175,7 @@ public class Venda {
 
 	public void setNum(int parseInt) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	
-	
 }

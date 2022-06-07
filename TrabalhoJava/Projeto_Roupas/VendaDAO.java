@@ -18,7 +18,7 @@ import modelo.Venda;
 	private Venda compra;
 	private BufferedReader br;
 	private BufferedWriter bw;
-	private String arquivo = System.getProperty("user.dir")+".\\dados\\Vendas.csv";
+	private String arquivo =".\\dados\\Vendas.csv";
 	private String[] campos;
 	
 	//Salva os dados de uma lista no arquivo

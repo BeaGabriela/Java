@@ -11,18 +11,18 @@ import java.util.ArrayList;
 import modelo.Venda;
 
 public class Dao {
-	
+
 	private BufferedReader br;
 	private BufferedWriter bw;
 	private String path = ".\\dados\\Vendas.csv";
+	private ArrayList<Venda> linhas = new ArrayList<>();
 
 	public ArrayList<Venda> ler() {
-		ArrayList<Venda> linhas = new ArrayList<>();
 		Venda venda;
 		try {
 			br = new BufferedReader(new FileReader(path));
 			String linha = br.readLine();
-			while(linha != null) {
+			while (linha != null) {
 				venda = new Venda(linha);
 				linhas.add(venda);
 				linha = br.readLine();
@@ -35,12 +35,12 @@ public class Dao {
 		}
 		return linhas;
 	}
-	
+
 	public void escrever(ArrayList<Venda> linhas) {
 		try {
 			bw = new BufferedWriter(new FileWriter(path));
 			for (Venda p : linhas) {
-				bw.write(p.tocsv()+"\r\n");
+				bw.write(p.tocsv() + "\r\n");
 			}
 			bw.close();
 		} catch (IOException e) {

@@ -1,26 +1,25 @@
 
-	package DAO;
+package DAO;
 
-	import java.io.BufferedWriter;
-	import java.io.FileWriter;
-	import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
-	public class RelatorioDAO {
+public class RelatorioDAO {
 
-		private BufferedWriter bw;
+	private BufferedWriter bw;
 
-		public boolean saveReport(String dados, String arquivo) {
-			boolean retorno = false;
-			try {
-				bw = new BufferedWriter(new FileWriter(arquivo));
-				bw.write(dados);
-				bw.close();
-			} catch (IOException e) {
-				System.out.println("Erro: " + e);
-			} finally {
-				retorno = true;
-			}
-			return retorno;
+	public boolean saveReport(String dados, String arquivo) {
+		boolean retorno = false;
+		try {
+			bw = new BufferedWriter(new FileWriter(arquivo));
+			bw.write(dados);
+			bw.close();
+		} catch (IOException e) {
+			System.out.println("Erro: " + e);
+		} finally {
+			retorno = true;
 		}
+		return retorno;
 	}
-
+}

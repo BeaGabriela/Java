@@ -17,10 +17,6 @@ import controle.Usuario_Processa;
 import controle.VendaProcess;
 import uteis.Cripto;
 
-
-
-
-
 public class TelaLogin extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
@@ -34,14 +30,13 @@ public class TelaLogin extends JFrame implements ActionListener {
 	private ImageIcon icon;
 	private String[] imagem = { ".\\assents\\Lotus_de_Seda_2-removebg-preview.png" };
 
-
 	TelaLogin() {
-		
+
 		setTitle("Login");
 		setBounds(570, 100, 795, 620);
 		setIconImage(new ImageIcon(imgIco).getImage());
 		painel = new JPanel();
-		painel.setBackground(new Color(201,200,227,83));
+		painel.setBackground(new Color(201, 200, 227, 83));
 		setContentPane(painel);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(null);
@@ -64,7 +59,6 @@ public class TelaLogin extends JFrame implements ActionListener {
 		login = new JButton("Login");
 		login.setBounds(325, 535, 110, 30);
 
-		
 //		setTitle("Tela de Login");
 //		setBounds(600, 300, 360, 200);
 //		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -84,10 +78,8 @@ public class TelaLogin extends JFrame implements ActionListener {
 //		senha.setBounds(120, 60, 200, 30);
 //		login = new JButton("Login");
 //		login.setBounds(120, 100, 200, 30);
-		
 
 		login.addActionListener(this);
-
 
 		painel.add(tfemail);
 		painel.add(email);
@@ -96,8 +88,7 @@ public class TelaLogin extends JFrame implements ActionListener {
 		painel.add(login);
 		painel.add(image);
 	}
-	
-	
+
 	private void imagem(int indice) {
 		icon = new ImageIcon(new ImageIcon(imgIco).getImage().getScaledInstance(370, 400, 100));
 		image.setIcon(icon);
@@ -107,31 +98,31 @@ public class TelaLogin extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == login) {
-			if(tfemail.getText().length() > 0 && new String(tfsenha.getPassword()).length() > 0) {
-			int indice = Usuario_Processa.checarEmail(tfemail.getText());
-			String adm = "admin@admin.com";
-			if (tfemail.getText().equals(adm)) {
-				if (Usuario_Processa.checarSenha(indice, new String(tfsenha.getPassword()))) {
-					this.dispose();
-					Usuario_Crud uc = new Usuario_Crud();
-					uc.setVisible(true);
-				} else {
-					JOptionPane.showMessageDialog(this, "Acesso negado");
-				}
-			} else {
-				if (indice != -1) {
+			if (tfemail.getText().length() > 0 && new String(tfsenha.getPassword()).length() > 0) {
+				int indice = Usuario_Processa.checarEmail(tfemail.getText());
+				String adm = "admin@admin.com";
+				if (tfemail.getText().equals(adm)) {
 					if (Usuario_Processa.checarSenha(indice, new String(tfsenha.getPassword()))) {
 						this.dispose();
-						TelaRoupa tr = new TelaRoupa();
-						tr.setVisible(true);
+						Usuario_Crud uc = new Usuario_Crud();
+						uc.setVisible(true);
 					} else {
 						JOptionPane.showMessageDialog(this, "Acesso negado");
 					}
 				} else {
-					JOptionPane.showMessageDialog(this, "Usuário não encontrado");
+					if (indice != -1) {
+						if (Usuario_Processa.checarSenha(indice, new String(tfsenha.getPassword()))) {
+							this.dispose();
+							TelaRoupa tr = new TelaRoupa();
+							tr.setVisible(true);
+						} else {
+							JOptionPane.showMessageDialog(this, "Acesso negado");
+						}
+					} else {
+						JOptionPane.showMessageDialog(this, "Usuário não encontrado");
+					}
 				}
-			}
-			}else {
+			} else {
 				JOptionPane.showMessageDialog(this, "Preencha o email e a senha");
 			}
 		}
@@ -144,9 +135,8 @@ public class TelaLogin extends JFrame implements ActionListener {
 		login.setVisible(true);
 	}
 
-
 	public void setModal(boolean b) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

@@ -27,19 +27,15 @@ public class TelaRoupa extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel painel;
-	private JLabel nomeCliente, genClient, tipoProuduto, valProduto, descont, qtd, nomeVendedor, imagemVendedor, codProduto;
+	private JLabel nomeCliente, genClient, tipoProuduto, valProduto, descont, qtd, nomeVendedor, imagemVendedor,
+			codProduto;
 	private JTextField tfCliente, tfvalProduto, tfQtd, tfcod;
 	private JComboBox<String> produtos, genCliente, desconto, tfVendedor;
 	private JTextArea verResultado;
 	private JButton cadastrar, buscarProduto, apagar, mudarVenda;
 	private String imgIco = "./assents/flor.png";
-	private String[] imagens = { "./assents/ana.jpg",
-			"./assents/beatriz.jpg",
-			"./assents/Carlos.png",
-			"./assents/julia.png",
-			"./assents/marcelo.jpg",
-			"./assents/maria.png",
-			"./assents/Victor.png" };
+	private String[] imagens = { "./assents/ana.jpg", "./assents/beatriz.jpg", "./assents/Carlos.png",
+			"./assents/julia.png", "./assents/marcelo.jpg", "./assents/maria.png", "./assents/Victor.png" };
 	private ImageIcon icon;
 	private int autoId = VendaProcess.vendas.size() + 1;
 	private String texto = "";
@@ -83,7 +79,7 @@ public class TelaRoupa extends JFrame implements ActionListener {
 		//
 		descont = new JLabel("*Desconto:");
 		descont.setBounds(20, 200, 120, 30);
-		desconto = new JComboBox<String>(new String[] { "5", "10", "15", "20", "25", "30"});
+		desconto = new JComboBox<String>(new String[] { "5", "10", "15", "20", "25", "30" });
 		desconto.setBounds(140, 200, 255, 30);
 		//
 		qtd = new JLabel("*Quantidade:");
@@ -94,7 +90,7 @@ public class TelaRoupa extends JFrame implements ActionListener {
 
 		verResultado = new JTextArea();
 		verResultado.setBounds(10, 350, 960, 200);
-		verResultado.setEnabled(false);
+		verResultado.setEditable(false);
 		verResultado.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
 		preencherAreaDeTexto();
 		//
@@ -172,9 +168,9 @@ public class TelaRoupa extends JFrame implements ActionListener {
 		icon = new ImageIcon(new ImageIcon(imagens[indice]).getImage().getScaledInstance(230, 200, 100));
 		imagemVendedor.setIcon(icon);
 	}
-	
+
 	int obterIndiceDesconto(String Desconto) {
-		switch(Desconto) {
+		switch (Desconto) {
 		case "5":
 			return 1;
 		case "10":
@@ -212,9 +208,9 @@ public class TelaRoupa extends JFrame implements ActionListener {
 			return -1;
 		}
 	}
-	
+
 	int obterIndiceRoupa(String Roupa) {
-		switch(Roupa) {
+		switch (Roupa) {
 		case "Cal�a Jeans":
 			return 0;
 		case "Blusa moletom":
@@ -235,49 +231,54 @@ public class TelaRoupa extends JFrame implements ActionListener {
 			return -1;
 		}
 	}
-	
+
 	int obterIndiceGenero(String genero) {
 		switch (genero) {
 		case "Feminina":
 			return 0;
-			
+
 		case "Masculina":
 			return 1;
 		default:
 			return -1;
 		}
 	}
-	
+
 	private double calculoTotal() {
-		
-		double calc = (Double.parseDouble(tfvalProduto.getText().replace(",", ".")) * Double.parseDouble(desconto.getSelectedItem().toString())) / 100;
-		
-		double total = (Double.parseDouble(tfvalProduto.getText().replace(",", ".")) - calc ) * Double.parseDouble(tfQtd.getText().toString());
-		
+
+		double calc = (Double.parseDouble(tfvalProduto.getText().replace(",", "."))
+				* Double.parseDouble(desconto.getSelectedItem().toString())) / 100;
+
+		double total = (Double.parseDouble(tfvalProduto.getText().replace(",", ".")) - calc)
+				* Double.parseDouble(tfQtd.getText().toString());
+
 		return total;
 	}
-	
+
 	private void cadastrar() {
-		
+
 		String data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
-		
-		if (tfCliente.getText().length() !=0 && tfvalProduto.getText().length() !=0 && tfQtd.getText().length() !=0) {
-			
-			VendaProcess.vendas.add(new Venda(autoId , tfVendedor.getSelectedItem().toString(), data, tfCliente.getText().toString(),
-					produtos.getSelectedItem().toString(), genCliente.getSelectedItem().toString(),Integer.parseInt(tfQtd.getText().toString()),
-					Double.parseDouble(tfvalProduto.getText().replace(",", ".")), Double.parseDouble(desconto.getSelectedItem().toString()), calculoTotal()));
+
+		if (tfCliente.getText().length() != 0 && tfvalProduto.getText().length() != 0
+				&& tfQtd.getText().length() != 0) {
+
+			VendaProcess.vendas.add(new Venda(autoId, tfVendedor.getSelectedItem().toString(), data,
+					tfCliente.getText().toString(), produtos.getSelectedItem().toString(),
+					genCliente.getSelectedItem().toString(), Integer.parseInt(tfQtd.getText().toString()),
+					Double.parseDouble(tfvalProduto.getText().replace(",", ".")),
+					Double.parseDouble(desconto.getSelectedItem().toString()), calculoTotal()));
 		} else {
 			JOptionPane.showMessageDialog(this, "Favor Preencher todos as informa��es");
 		}
-		
+
 		autoId++;
 		limparCampos();
 		preencherAreaDeTexto();
 		VendaProcess.salvar();
 	}
-	
+
 	private void buscar() {
-		String entrada = JOptionPane.showInputDialog(this,"Digite o c�ódigo do produto:");
+		String entrada = JOptionPane.showInputDialog(this, "Digite o c�ódigo do produto:");
 
 		boolean isNumeric = true;
 		if (entrada != null) {
@@ -286,15 +287,15 @@ public class TelaRoupa extends JFrame implements ActionListener {
 					isNumeric = false;
 				}
 			}
-		}else {
+		} else {
 			isNumeric = false;
 		}
 		if (isNumeric) {
-			
+
 			int id = Integer.parseInt(entrada);
-			
+
 			boolean achou = false;
-			
+
 			for (Venda v : VendaProcess.vendas) {
 				if (v.getcodProduto() == id) {
 					achou = true;
@@ -312,42 +313,43 @@ public class TelaRoupa extends JFrame implements ActionListener {
 					mudarVenda.setEnabled(true);
 					apagar.setEnabled(true);
 					break;
-				} 
-				
+				}
+
 			}
-			
+
 			if (!achou) {
 				JOptionPane.showMessageDialog(this, "Cliente n�o encontrado");
 			}
-			
+
 		}
 
 	}
-	
+
 	private void mudarVenda() {
 		String data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
 		int Id = Integer.parseInt(tfcod.getText());
 		Usuario us = new Usuario(Id);
 		int indice = Integer.parseInt(tfcod.getText());
-		
+
 		for (Venda venda : VendaProcess.vendas) {
 			if (venda.getcodProduto() == Id) {
 				indice = VendaProcess.vendas.indexOf(venda);
 			}
 		}
-		
-		if (tfCliente.getText().length() !=0 && tfvalProduto.getText().length() !=0 && tfQtd.getText().length() !=0) {
-			
-			VendaProcess.vendas.set(indice,  new Venda(Integer.parseInt(tfcod.getText()) , tfVendedor.getSelectedItem().toString(),
-					data, tfCliente.getText().toString(),
-					produtos.getSelectedItem().toString(), genCliente.getSelectedItem().toString(),
-					Integer.parseInt(tfQtd.getText().toString()),
-					Double.parseDouble(tfvalProduto.getText().replace(",", ".")),
-					Double.parseDouble(desconto.getSelectedItem().toString()), calculoTotal()));
-			
-				preencherAreaDeTexto();
-				limparCampos();
-				VendaProcess.salvar();
+
+		if (tfCliente.getText().length() != 0 && tfvalProduto.getText().length() != 0
+				&& tfQtd.getText().length() != 0) {
+
+			VendaProcess.vendas.set(indice,
+					new Venda(Integer.parseInt(tfcod.getText()), tfVendedor.getSelectedItem().toString(), data,
+							tfCliente.getText().toString(), produtos.getSelectedItem().toString(),
+							genCliente.getSelectedItem().toString(), Integer.parseInt(tfQtd.getText().toString()),
+							Double.parseDouble(tfvalProduto.getText().replace(",", ".")),
+							Double.parseDouble(desconto.getSelectedItem().toString()), calculoTotal()));
+
+			preencherAreaDeTexto();
+			limparCampos();
+			VendaProcess.salvar();
 		} else {
 			JOptionPane.showMessageDialog(this, "Favor preencher todos os campos.");
 		}
@@ -355,45 +357,44 @@ public class TelaRoupa extends JFrame implements ActionListener {
 		mudarVenda.setEnabled(false);
 		apagar.setEnabled(false);
 		tfcod.setText(String.format("%d", VendaProcess.vendas.size() + 1));
-		
-		
+
 	}
-	
-	public void apagar(){
-		
+
+	public void apagar() {
+
 		int id = Integer.parseInt(tfcod.getText());
 		int indice = -1;
 		for (Venda manu : VendaProcess.vendas) {
 			if (manu.getcodProduto() == id) {
 				indice = VendaProcess.vendas.indexOf(manu);
 			}
-			
+
 		}
-		
-		 VendaProcess.vendas.remove(indice);
+
+		VendaProcess.vendas.remove(indice);
 		preencherAreaDeTexto();
 		limparCampos();
 		cadastrar.setEnabled(true);
 		mudarVenda.setEnabled(false);
 		apagar.setEnabled(false);
-		 VendaProcess.salvar();
+		VendaProcess.salvar();
 		tfcod.setText(String.format("%d", VendaProcess.vendas.size() + 1));
 	}
-	
+
 	private void limparCampos() {
 		tfCliente.setText(null);
 		tfQtd.setText(null);
 		tfvalProduto.setText(null);
 	}
-	
+
 	private void preencherAreaDeTexto() {
 		texto = "";
 		for (Venda p : VendaProcess.vendas) {
-			texto += p.toString()+"\n";
+			texto += p.toString() + "\n";
 		}
 		verResultado.setText(texto);
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == tfVendedor) {
